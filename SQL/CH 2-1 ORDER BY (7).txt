@@ -1,0 +1,33 @@
+1 DISPLAY ALL INFO. OF EMPLOYEES TABLE SORT ROWS ON SALARY COLUMN
+=> select * from employees order by salary asc;
+
+2 DISPLAY ALL INFO. OF EMPLOYEES TABLE SORT ON HIRE_DATE COLUMN USING COLUMN POSITION
+=> select * from employees order by 6;
+
+3 DISPLAY DEPARTMENT_ID , FIRST_NAME SORT ON DEPARTMENT_ID COLUMN (USE COLUMN ALIAS IN ORDER BY CLAUSE)
+=> select department_id depart, first_name from employees order by depart;
+
+4 DISPLAY FIRST_NAME , SALARY , SORT ROWS ON DESCENDING ORDER OF SALARY COLUMN
+=> select first_name, salary from employees order by 2 desc;
+
+5 DISPLAY LAST_NAME , COMMISSION_PCT IN ASCENDING ORDER OF SECOND COLUMN (USE ASC KEY WORD)
+=> select last_name, commission_pct from employees order by 2 asc;
+
+6 DISPLAY FIRST_NAME , COMMISSION_PCT IN DESCENDING ORDER OF SECOND COLUMN (KEEP ALL NULLS AT THE BOTTOM)
+=> select first_name, commission_pct from employees order by 2 desc;
+
+7 DISPLAY JOB_ID , FIRST_NAME. SORT ON BOTH COLUMNS (USE COLUMN NAME AND COLUMN POSITION)
+=> select job_id, first_name name from employees order by job_id, 2;
+
+8 DISPLAY MANAGER_ID , LAST_NAME. SORT ON BOTH COLUMNS (USE COLUMN POSITION AND COLUMN ALIAS)
+=> select manager_id, last_name surname from employees order by 1, surname;
+
+9 DISPLAY MANAGER_ID , JOB_ID , SALARY. SORT ON ALL 3 COLUMNS. (USE COLUMN NAME , COLUMN POSITION , COLUMN ALIAS)
+=> select manager_id, job_id, salary as payment from employees order by manager_id, 2, payment;
+
+10 DISPLAY DEPARTMENT_ID , JOB_ID , SALARY , FIRST_NAME SORT ROWS ON ALL FOUR COLUMNS USING COLUMN NAME, COLUMN POSITION , COLUMN ALIAS , ASC , DESC AND NULLS FIRST OPTION IN SINGLE COMMAND ONLY
+=> select department_id, job_id, salary as payment, first_name from employees order by department_id nulls first, 2 asc, payment desc, 4;
+
+11 DISPLAY FIRST_NAME , SALARY AND "Yearly Salary", SORT ON 3rd COLUMN USING COLUMN ALIAS.
+=> select first_name, salary, salary*12 as "Yearly Salary" from employees order by "Yearly Salary";
+

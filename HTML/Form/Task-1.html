@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form-1</title>
+  </head>
+  <body bgcolor="lightgreen">
+    <font color="red" size="5">
+      <legend align="center" color="red">Personal Details</legend>
+    </font>
+    <br />
+    <table align="center">
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="name" /></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" name="pwd" /></td>
+      </tr>
+      <tr>
+        <td>E-mail id:</td>
+        <td><input type="email" name="email" /></td>
+      </tr>
+      <tr>
+        <td>Gender:</td>
+        <td>
+          <input type="radio" name="gender" value="male" /> Male
+          <input type="radio" name="gender" value="female" /> Female
+        </td>
+      </tr>
+      <tr>
+        <td>Contact:</td>
+        <td><input type="tel" name="mobile" /></td>
+      </tr>
+    </table>
+
+    <br />
+
+    <font color="red" size="5">
+      <legend align="center" color="red">Educational Qualification</legend>
+    </font>
+    <br />
+    <table align="center">
+      <tr>
+        <td>Degree:</td>
+        <td>
+          <select name="degree" id="">
+            <option value="" label="--Select Group--"></option>
+            <option value="Btech">B.Tech</option>
+            <option value="BE">BE</option>
+            <option value="BCA">BCA</option>
+            <option value="BSC">BSC</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Engineering:</td>
+        <td>
+          <select name="engineering" id="">
+            <option value="" label="--Select Group--"></option>
+            <option value="CSE">CSE</option>
+            <option value="EC">EC</option>
+            <option value="ICT">ICT</option>
+            <option value="Mechanical">Mechanical</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Hobbies:</td>
+        <td>
+          Cricket
+          <input type="checkbox" name="hobby" value="cricket" id="" /> singing
+          <input type="checkbox" value="singing" name="hobby" id="" />
+        </td>
+      </tr>
+
+      <tr></tr>
+    </table>
+  </body>
+</html>

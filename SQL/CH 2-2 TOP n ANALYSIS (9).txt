@@ -1,0 +1,59 @@
+1 DISPLAY FIRST 7 ROWS (USING FIRST KEY WORD)
+=> select * from hr.employees fetch first 7 row only;
+
+2 DISPLAY FIRST 3 ROWS (USING NEXT KEY WORD)
+=> select * from hr.employees fetch next 3 row only;
+
+3 DISPLAY ALL ROWS STARTING WITH 15TH ROW
+=> select * from hr.employees offset 14 rows;
+
+4 DISPLAY 10 ROWS STARTING WITH 15TH ROW
+=> select * from hr.employees offset 14 rows fetch next 10 rows only;
+
+5 SORT ROWS ON DEPARTMENT_ID COLUMN. DISPLAY FIRST_NAME , DEPARTMENT_ID. DISPLAY FIRST 5 ROWS ONLY.
+=> select first_name, department_id from hr.employees order by 2 fetch first 5 rows only;
+
+6 SORT ROWS ON DEPARTMENT_ID COLUMN. DISPLAY FIRST_NAME , DEPARTMENT_ID. DISPLAY 5 OR MORE ROWS WITH DUPLICATE VALUES.
+=> select first_name, department_id from hr.employees order by 2 fetch first 5 rows with ties;
+
+7 SORT ROWS ON JOB_ID COLUMN IN DESCENDING ORDER. DISPLAY LAST_NAME , JOB_ID. DISPLAY FIRST 3 ROWS ONLY.
+=> select last_name, job_id from hr.employees order by 2 desc fetch first 3 rows only;
+
+8 SORT ROWS ON JOB_ID COLUMN IN DESCENDING ORDER. DISPLAY LAST_NAME , JOB_ID. DISPLAY 3 OR MORE ROWS WITH DUPLICATE VALUES.
+=> select last_name, job_id from hr.employees order by 2 desc fetch first 3 rows with ties;
+
+9 SORT ROWS ON DEPARTMENT_ID COLUMN. DISPLAY FIRST_NAME , DEPARTMENT_ID. DISPLAY 4 ROWS ONLY STARTING WITH 7TH ROW.
+=> select first_name, department_id from hr.employees order by 2 offset 6 rows fetch next 4 rows only;
+
+10 SORT ROWS ON JOB_ID COLUMN IN DESCENDING ORDER. DISPLAY LAST_NAME , JOB_ID. DISPLAY 4 OR MORE ROWS WITH DUPLICATE VALUES STARTING WITH 4TH ROW.
+=> select last_name, job_id from hr.employees order by 2 desc offset 3 rows fetch next 4 rows with ties;
+
+11 DISPLAY 8 ROWS FROM THE TOP OF THE TABLE.
+=> select * from hr.employees fetch first 8 rows only;
+
+12 DISPLAY 9 ROWS FROM THE BOTTOM OF THE TABLE.
+=> select * from hr.employees offset 20-9 rows;
+
+13 DISPLAY ROWS 6-15.
+=> select * from hr.employees offset 5 rows fetch next 9 rows only;
+
+14 DISPLAY ROWS BETWEEN 4 AND 9.
+=> select * from hr.employees offset 3 rows fetch next 6 rows only;
+
+15 DISPLAY ROWS STARTING WITH 8 AND UPTO 15.
+=> select * from hr.employees offset 7 rows fetch next 8 rows only;
+
+16 DISPLAY LAST_NAME , MANAGER_ID. SORT ON MANAGER_ID. START WITH 4TH ROW AND DISPLAY 8 ROWS WITH EXTRA ROWS.
+=> select last_name, manager_id from hr.employees order by manager_id offset 3 rows fetch next 8 rows with ties;
+
+17 DISPLAY FIRST_NAME , MANAGER_ID. SORT ON MANAGER_ID IN DESCENDING ORDER. START WITH 5TH ROW AND DISPLAY 4 OR MORE ROWS WITH DUPLICATES.
+=> select first_name, manager_id from hr.employees order by manager_id desc offset 4 rows fetch next 4 rows with ties;
+
+18 DISPLAY EMPLOYEE_ID , MANAGER_ID. SORT ON MANAGER_ID COLUMN. DISPLAY FIRST 3 OR MORE ROWS WITH DUPLICATES.
+=> select employee_id, manager_id from hr.employees order by manager_id fetch first 3 rows with ties;
+
+19 DISPLAY FIRST_NAME , DEPARTMENT_ID. SORT ON DEPARTMENT_ID COLUMN. START WITH 5TH ROW AND DISPLAY 5 ROWS.
+=> select first_name, department_id from hr.employees order by 2 offset 4 rows fetch next 5 rows only;
+
+20 DISPLAY FIRST_NAME , DEPARTMENT_ID. SORT ON DEPARTMENT_ID COLUMN. START WITH 5TH ROW AND DISPLAY 5 OR MORE ROWS WITH DIPLICATES.
+=> select first_name, department_id from hr.employees order by 2 offset 4 rows fetch next 5 rows with ties;

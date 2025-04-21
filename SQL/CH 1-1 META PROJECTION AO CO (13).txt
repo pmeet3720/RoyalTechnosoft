@@ -1,0 +1,62 @@
+1 DISPLAY ALL DATA OF EMPLOYEES TABLE
+=> select * from employees;
+
+2 DISPLAY ALL DATA OF DEPARTMENTS TABLE
+=> select * from departments;
+
+3 DISPLAY FIRST_NAME OF EMPLOYEES TABLE
+=> select first_name from employees;
+
+4 DISPLAY LAST_NAME AND HIRE_DATE OF EMPLOYEES TABLE
+=> select last_name,  hire_date from employees;
+
+5 DISPLAY ALL DATA OF REGIONS TABLE WITHOUT USING * (META CHARACTER)
+-> select region_id, region_name from regions;
+
+6 DISPLAY FIRST_NAME , SALARY AND NEW SALARY (NEW SALARY = SALARY + 1500)
+=> select first_name, salary, salary+1500 as "NEW SALARY" from employees;
+
+7 DISPLAY LAST_NAME , SALARY AND ANNUAL SALARY (ANNUAL SALARY = SALARY * 12)
+=> select last_name, salary, salary*12 as "ANNUAL SALARY" from employees;
+
+8 DISPLAY FIRST_NAME , SALARY AND DAILY SALARY (DAILY SALARY = SALARY / 30)
+=> select first_name, salary, salary/30 as "DAILY SALARY" from employees;
+
+9 DISPLAY FIRST_NAME AND LAST_NAME IN SINGLE COLUMN WITH PROPER COLUMN ALIAS/HEADING.
+=> select first_name || ' ' || last_name as "FULL NAME" from employees;
+
+10 DISPLAY RESULT OF 456 * 67 (SINGLE TIME, USING DU.. TABLE)
+=> select 456*67 from dual;
+
+11 DISPLAY RESULT OF 456 / 92 (SINGLE TIME, WITHOUT USING DU.. TABLE)
+=> select 456/92 from dual;
+
+12 DISPLAY GIVEN RESULT FOR EACH EMPLOYEE : Steven works as AD_PRES.
+=> select first_name || ' works as ' || job_id || '.' as result from employees;
+
+13 DISPLAY GIVEN RESULT FOR EACH EMPLOYEE : King's monthly salary is Rs.24000 (TWO STYLES : USING Q OPERATOR AND WITOUT USING Q OPERATOR)
+=> select last_name || Q'A's monthly salary is Rs.A' || salary as result from employees;
+=> select last_name || '''s montlhy salary is Rs.' || salary as result from employees;
+
+14 DISPLAY ALL INFO. OF EMPLOYEES TABLE WITH ANNUAL SALARY (ANNUAL SALARY = SALARY * 12)
+=> select Employees.*, salary*12 as "ANNUAL SALARY" from employees;
+
+15 DISPLAY FIRST_NAME , NEW_ANNUAL_SALARY (NEW_ANNUAL_SALARY = SALARY + 1000 * 12)
+=> select first_name, salary+1000*12 as new_annual_salary from employees;
+
+16 DISPLAY ALL INFO. OF DEPARTMENTS TABLE WITH ROWID.
+=> select rowid, departments.* from departments;
+
+17 DISPLAY ALL INFO. OF COUNTRIES TABLE WITH ROWNUM AND ROWID. (WITHOUT USING TABLE ALIAS)
+=> select rowid, rownum, countries.* from countries;
+
+18 DISPLAY ALL INFO. OF EMPLOYEES TABLE WITH YEARLY SALARY. (USING TABLE ALIAS)
+=> select employees.*, salary*12 as yearly_salary from employees;
+
+19 DISPLAY ALL INFO. OF EMPLOYEES TABLE WITH ROWID AND YEARLY SALARY. (WITHOUT USING TABLE ALIAS)
+=> select rowid, employees.*, salary*12 as yearly_salary from employees;
+
+20 DISPALY ALL INFO. OF EMPLOYEES TABLE WITH ROWNUM , ROWID AND YEARLY SALARY. (USE TABLE ALIAS)
+=> select rowid, rownum, employees.*, salary*12 as yearly_salary from employees;
+
+

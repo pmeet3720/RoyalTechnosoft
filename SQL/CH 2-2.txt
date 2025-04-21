@@ -1,0 +1,915 @@
+
+SQL>
+SQL>
+SQL> REM TOP n ANALSYS
+SQL>
+SQL> REM SYNTAX OF SELECT : SELECT ... FROM ... WHERE ... ORDER BY ... OFFSET ... FETCH ...;
+SQL>
+SQL> REM OFFSET AND FETCH ARE USED FOR TOP n ANALYSIS
+SQL>
+SQL>
+SQL>
+SQL> REM TOP n ANALSYS
+SQL>
+SQL> REM 1 TO DISPLAY ROWS FROM TOP OF THE TABLE
+SQL>
+SQL> REM 2 TO DISPLAY ROWS FROM BOTTOM OF THE TABLE
+SQL>
+SQL> REM 3 TO DISPLAY ROWS FROM THE MIDDLE OF THE TABLE
+SQL>
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL>
+SQL>  REM 1 TO DISPLAY ROWS FROM TOP OF THE TABLE (DISPLAY FIRST 5 ROWS OF TABLE)
+SQL>
+SQL> REM 2 TO DISPLAY ROWS FROM BOTTOM OF THE TABLE (DISPLAY LAST 7 ROWS OR DISPLAY ALL ROWS STARTING FROM 13)
+SQL>
+SQL> REM 3 TO DISPLAY ROWS FROM THE MIDDLE OF THE TABLE (DISPLAY ROWS BETWEEN 5 AND 11)
+SQL>
+SQL>
+SQL>
+SQL>  REM 1 TO DISPLAY ROWS FROM TOP OF THE TABLE (DISPLAY FIRST 5 ROWS OF TABLE) : FETCH.....
+SQL>
+SQL> REM 2 TO DISPLAY ROWS FROM BOTTOM OF THE TABLE (DISPLAY LAST 7 ROWS OR DISPLAY ALL ROWS STARTING FROM 13) : OFFSET....
+SQL>
+SQL> REM 3 TO DISPLAY ROWS FROM THE MIDDLE OF THE TABLE (DISPLAY ROWS BETWEEN 5 AND 11) : OFFSET....FETCH....
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>  REM 1 TO DISPLAY ROWS FROM TOP OF THE TABLE (DISPLAY FIRST 5 ROWS OF TABLE) : FETCH.....
+SQL>
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH FIRST 5 ROW ONLY;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+
+SQL>
+SQL> REM FETCH   FIRST/NEXT  no.of rows   ROW/ROWS  ONLY/WITH TIES
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 5 ROW ONLY;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH LAST 5 ROW ONLY;
+SELECT * FROM EMPLOYEES FETCH LAST 5 ROW ONLY
+                              *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 5 ROWS ONLY;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 5 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+
+SQL>
+SQL> REM : no.of rows : NUMBER / DECIMAL / FORMULA / FUNCTION / FORMULA+FUNCTION
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 6 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 6.3 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 6.90 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 3+3 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 2*3 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 10-4 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT SQRT(25) ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT SQRT(36) ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT SQRT(25)+1 ROWS WITH TIES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT ROWS ONLY;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT 6 ROWS ONLY;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+
+6 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT SIX ROWS ONLY;
+SELECT * FROM EMPLOYEES FETCH NEXT SIX ROWS ONLY
+                                   *
+ERROR at line 1:
+ORA-00904: "SIX": invalid identifier
+
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES FETCH NEXT VI ROWS ONLY;
+SELECT * FROM EMPLOYEES FETCH NEXT VI ROWS ONLY
+                                   *
+ERROR at line 1:
+ORA-00904: "VI": invalid identifier
+
+
+SQL>
+SQL>
+SQL>  REM DISPLAY 12 ROWS FROM TOP OF THE EMPLOYEES TABLE
+SQL>
+SQL> select *  from employees fetch next 12 rows only;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+
+12 rows selected.
+
+SQL>
+SQL>  REM DISPLAY ALL ROWS OTHER THAN LAST 5
+SQL>
+SQL> select * from employees fetch next 20-5 rows only;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+
+15 rows selected.
+
+SQL>
+SQL>
+SQL>  REM FIRST AND NEXT HAS IDENTICAL MEANING AND FUNCTIONALITY.
+SQL>
+SQL> REM 2 TO DISPLAY ROWS FROM BOTTOM OF THE TABLE (DISPLAY LAST 7 ROWS OR DISPLAY ALL ROWS STARTING FROM 12)  : OFFSET ...
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL> REM DISPLAY LAST 7 ROWS ONLY
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 13 ROW;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+7 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 20-7 ROW;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+7 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 20-7 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+7 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET ROWS;
+SELECT * FROM EMPLOYEES OFFSET ROWS
+                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> REM DISPLAY ALL ROWS STARTING FROM 11TH
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 10 REM DISPLAY ALL ROWS STARTING FROM 11THROWS;
+SELECT * FROM EMPLOYEES OFFSET 10 REM DISPLAY ALL ROWS STARTING FROM 11THROWS
+                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT * FROM EMPLOYEES OFFSET 10 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+10 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 11 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+9 rows selected.
+
+SQL> REM : 15 - 1 = 14 OFFSET
+SQL>
+SQL> REM DISPLAY ALL BUT NOT FIRST 5 ROWS
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 20-5 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+SQL> SELECT * FROM EMPLOYEES OFFSET 5 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+15 rows selected.
+
+SQL>
+SQL>  REM DEFAULT OFFSET VALUE IS 0
+SQL>
+SQL> REM DISPLAY ALL BUT NOT FIRST 8 ROWS
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 8 ROWS;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+12 rows selected.
+
+SQL> REM 3 TO DISPLAY ROWS FROM THE MIDDLE OF THE TABLE (DISPLAY ROWS BETWEEN 5 AND 11) : OFFSET ... FETCH ...
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 4 ROWS FETCH NEXT 7 ROW ONLY ;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+
+7 rows selected.
+
+SQL>
+SQL> REM DISPLAY ROWS 7 - 15
+SQL>
+SQL> REM : 7 - 1 = 6 OFFSET
+SQL>
+SQL> REM : 6 + 9 FETCH = 15 / 15 - 6 = 9 FETCH
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 6 ROWS FETCH NEXT 9 ROW ONLY ;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+
+9 rows selected.
+
+SQL>
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL>
+SQL>
+SQL>  REM DISPLAY ALL OTHER THAN FIRST 5 AND LAST 4
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 5 ROWS FETCH NEXT 11 ROW ONLY ;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+
+11 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT * FROM EMPLOYEES OFFSET 5 ROWS FETCH NEXT 11 ROW WITH TIES ;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas          PVARGAS    650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+
+11 rows selected.
+
+SQL>
+SQL> SELECT DEPARTMENT_ID, FIRST_NAME FROM EMPLOYEES;
+
+DEPARTMENT_ID FIRST_NAME
+------------- ---------------
+           90 Steven
+           90 Neena
+           90 Lex
+           60 Alexander
+           60 Bruce
+           60 Diana
+           50 Kevin
+           50 Trenna
+           50 Curtis
+           50 Randall
+           50 Peter
+           80 Eleni
+           80 Ellen
+           80 Jonathon
+              Kimerely
+           10 Jennifer
+           20 Michael
+           20 Pat
+          110 Shelley
+          110 William
+
+20 rows selected.
+
+SQL>
+SQL> SELECT DEPARTMENT_ID, FIRST_NAME FROM EMPLOYEES OFFSET 3 ROW FETCH NEXT 5 ROW ONLY;
+
+DEPARTMENT_ID FIRST_NAME
+------------- ---------------
+           60 Alexander
+           60 Bruce
+           60 Diana
+           50 Kevin
+           50 Trenna
+
+SQL>
+SQL> SELECT DEPARTMENT_ID, FIRST_NAME FROM EMPLOYEES ORDER BY 1;
+
+DEPARTMENT_ID FIRST_NAME
+------------- ---------------
+           10 Jennifer
+           20 Michael
+           20 Pat
+           50 Kevin
+           50 Peter
+           50 Randall
+           50 Curtis
+           50 Trenna
+           60 Diana
+           60 Bruce
+           60 Alexander
+           80 Ellen
+           80 Eleni
+           80 Jonathon
+           90 Lex
+           90 Steven
+           90 Neena
+          110 William
+          110 Shelley
+              Kimerely
+
+20 rows selected.
+
+SQL> SELECT DEPARTMENT_ID, FIRST_NAME FROM EMPLOYEES ORDER BY 1 OFFSET 3 ROW FETCH NEXT 6 ROW ONLY;
+
+DEPARTMENT_ID FIRST_NAME
+------------- ---------------
+           50 Kevin
+           50 Peter
+           50 Randall
+           50 Curtis
+           50 Trenna
+           60 Alexander
+
+6 rows selected.
+
+SQL> SELECT DEPARTMENT_ID, FIRST_NAME FROM EMPLOYEES ORDER BY 1 OFFSET 3 ROW FETCH NEXT 6 ROW WITH TIES;
+
+DEPARTMENT_ID FIRST_NAME
+------------- ---------------
+           50 Kevin
+           50 Peter
+           50 Randall
+           50 Curtis
+           50 Trenna
+           60 Alexander
+           60 Diana
+           60 Bruce
+
+8 rows selected.
+
+SQL>
+SQL> SELECT MANAGER_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1;
+
+MANAGER_ID LAST_NAME
+---------- ---------------
+       100 Hartstein
+       100 Kochhar
+       100 De Haan
+       100 Zlotkey
+       100 Mourgos
+       101 Higgins
+       101 Whalen
+       102 Hunold
+       103 Ernst
+       103 Lorentz
+       124 Davies
+       124 Matos
+       124 Vargas
+       124 Rajs
+       149 Grant
+       149 Abel
+       149 Taylor
+       201 Fay
+       205 Gietz
+           King
+
+20 rows selected.
+
+SQL>
+SQL> SELECT MANAGER_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1 OFFSET 2 ROW FETCH NEXT 9 ROW ONLY;
+
+MANAGER_ID LAST_NAME
+---------- ---------------
+       100 Zlotkey
+       100 Mourgos
+       100 De Haan
+       101 Whalen
+       101 Higgins
+       102 Hunold
+       103 Ernst
+       103 Lorentz
+       124 Rajs
+
+9 rows selected.
+
+SQL> SELECT MANAGER_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1 OFFSET 2 ROW FETCH NEXT 9 ROW WITH TIES;
+
+MANAGER_ID LAST_NAME
+---------- ---------------
+       100 Zlotkey
+       100 Mourgos
+       100 De Haan
+       101 Whalen
+       101 Higgins
+       102 Hunold
+       103 Ernst
+       103 Lorentz
+       124 Rajs
+       124 Vargas
+       124 Matos
+       124 Davies
+
+12 rows selected.
+
+SQL>
+SQL> SELECT MANAGER_ID, JOB_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1,2;
+
+MANAGER_ID JOB_ID     LAST_NAME
+---------- ---------- ---------------
+       100 AD_VP      Kochhar
+       100 AD_VP      De Haan
+       100 MK_MAN     Hartstein
+       100 SA_MAN     Zlotkey
+       100 ST_MAN     Mourgos
+       101 AC_MGR     Higgins
+       101 AD_ASST    Whalen
+       102 IT_PROG    Hunold
+       103 IT_PROG    Lorentz
+       103 IT_PROG    Ernst
+       124 ST_CLERK   Rajs
+       124 ST_CLERK   Davies
+       124 ST_CLERK   Matos
+       124 ST_CLERK   Vargas
+       149 SA_REP     Grant
+       149 SA_REP     Taylor
+       149 SA_REP     Abel
+       201 MK_REP     Fay
+       205 AC_ACCOUNT Gietz
+           AD_PRES    King
+
+20 rows selected.
+
+SQL>
+SQL> SELECT MANAGER_ID, JOB_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1,2 OFFSET 5 ROW FETCH NEXT 6 ROW ONLY;
+
+MANAGER_ID JOB_ID     LAST_NAME
+---------- ---------- ---------------
+       101 AC_MGR     Higgins
+       101 AD_ASST    Whalen
+       102 IT_PROG    Hunold
+       103 IT_PROG    Ernst
+       103 IT_PROG    Lorentz
+       124 ST_CLERK   Rajs
+
+6 rows selected.
+
+SQL> SELECT MANAGER_ID, JOB_ID, LAST_NAME FROM EMPLOYEES ORDER BY 1,2 OFFSET 5 ROW FETCH NEXT 6 ROW WITH TIES;
+
+MANAGER_ID JOB_ID     LAST_NAME
+---------- ---------- ---------------
+       101 AC_MGR     Higgins
+       101 AD_ASST    Whalen
+       102 IT_PROG    Hunold
+       103 IT_PROG    Ernst
+       103 IT_PROG    Lorentz
+       124 ST_CLERK   Rajs
+       124 ST_CLERK   Vargas
+       124 ST_CLERK   Matos
+       124 ST_CLERK   Davies
+
+9 rows selected.
+
+SQL>  REM RESTRICTION/SELECTION  : LEFT FROM
+SQL>
+SQL>
