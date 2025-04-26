@@ -2,6 +2,7 @@
 #include<stdio.h>
 
 int countPalindromeWords(char[]);
+int checkPalindrome(char[]);
 
 void main(){
     char str[100];
@@ -17,13 +18,19 @@ int countPalindromeWords(char str[]){
     int len = strlen(str);
     char words[10];
     int i=0, j, k=0,cp=0;
+    str[len] = '\0';
+    // str[len + 1] = '\0';
     while(str[i]!='\0'){
         j = i;
         k = 0;
         while(str[j]!=' '){
-            words[k] = str[j];
-            k++;
-            j++;
+            if(str[j]!='!'){
+                words[k] = str[j];
+                k++;
+                j++;
+            }else{
+                break;
+            }
         }
         words[k] = '\0';
         i = j+1;

@@ -1,6 +1,6 @@
 # implement strings to remove duplicate letters from it
 # str = input("Enter string: ")
-str = "hello my naneme is meete"
+str = "hello my name is meet"
 str1 = ""
 l = str.split(' ')
 l1 = []
