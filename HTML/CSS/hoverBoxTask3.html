@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hover Task 3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .mainLine {
+      width: 100%;
+      height: 100px;
+      background-color: green;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+    .circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: white;
+      text-align: center;
+      line-height: 70px;
+      font-size: 18px;
+      /* margin: 25px; */
+    }
+    i:hover {
+      transform: scale(2);
+      transition: 1s;
+    }
+    .fa-instagram:hover {
+      color: pink;
+    }
+    .fa-facebook:hover {
+      color: blue;
+    }
+    .fa-youtube:hover {
+      color: red;
+    }
+    .fa-twitter:hover {
+      color: skyblue;
+    }
+    .fa-linkedin:hover {
+      color: blue;
+    }
+  </style>
+  <body>
+    <div class="mainLine">
+      <div class="circle" id="1"><i class="fa-brands fa-instagram"></i></div>
+      <div class="circle" id="2"><i class="fa-brands fa-facebook"></i></div>
+      <div class="circle" id="3"><i class="fa-brands fa-github"></i></div>
+      <div class="circle" id="4"><i class="fa-brands fa-youtube"></i></div>
+      <div class="circle" id="5"><i class="fa-brands fa-twitter"></i></div>
+      <div class="circle" id="6"><i class="fa-brands fa-linkedin"></i></div>
+    </div>
+  </body>
+</html>

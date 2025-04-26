@@ -1,6 +1,6 @@
 # remove duplicates from list
 
-L1 = [1,2,2,3,4,5,5,6]
+L1 = [1,2,2,3,4,5,5,5,6]
 L2 = []
 
 """for ele in L1:
