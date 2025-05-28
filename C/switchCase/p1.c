@@ -7,6 +7,9 @@ int main(){
     printf("enter n0=> ");
     scanf("%d", &no);
 
+    switch(10)
+        ;
+
     switch(no){
         case 1:
         case 2:
@@ -24,6 +27,6 @@ int main(){
             break;
         default:
             printf("number more than 10");
-        }
+        };
     return 0;
 }

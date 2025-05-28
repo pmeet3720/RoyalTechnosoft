@@ -1,0 +1,343 @@
+SQL> 
+SQL> REM DATE FUNCTIONS : SYSDATE CURRENT_DATE    ADD_MONTHS MONTHS_BETWEEN    LAST_DAY NEXT_DAY    TRUNC ROUND
+SQL> 
+SQL> SET LINES 200 PAGES 24 SERVEROUT ON FORMAT WRA
+SQL> 
+SQL> REM TRUNC : WE CAN TRUNC DATE MAINL IN 3 STYLES .
+SQL> 
+SQL> REM 1 MONTH 2 Q/QUARTER 3 YEAR
+SQL> 
+SQL> REM IF WE TRUNC DATE WITH MONTH, IT WILL RETURN SAME/INPUT MONTH'S FIRST DATE
+SQL> 
+SQL> REM IF WE TRUNC DATE WITH Q/QUARTER, IT WILL RETURN SAME/INPUT QUARTER'S FIRST DATE
+SQL> 
+SQL> REM IF WE TRUNC DATE WITH YEAR, IT WILL RETURN SAME/INPUT YEAR'S FIRST DATE
+SQL> 
+SQL> 
+SQL> SELECT SYSDATE , TRUNC(SYSDATE,'MM') , TRUNC(SYSDATE,'Q') , TRUNC(SYSDATE,'YYYY') FROM DUAL;
+
+SYSDATE   TRUNC(SYS TRUNC(SYS TRUNC(SYS                                                                                                                                                                 
+--------- --------- --------- ---------                                                                                                                                                                 
+16-MAY-25 01-MAY-25 01-APR-25 01-JAN-25                                                                                                                                                                 
+
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                     
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------                                                     
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90                                                     
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90                                                     
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90                                                     
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60                                                     
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60                                                     
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60                                                     
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50                                                     
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50                                                     
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50                                                     
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50                                                     
+        144 Peter           Vargas                     650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50                                                     
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80                                                     
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80                                                     
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80                                                     
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149                                                                   
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10                                                     
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20                                                     
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20                                                     
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110                                                     
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110                                                     
+
+20 rows selected.
+
+SQL> REM FIND DAY NUMBER OF MONTH ON WHICH EMPLOYEE WERE HIRED.
+SQL> 
+SQL> SELECT HIRE_dATE , SUBSTR(HIRE_DATE,1,2) FROM EMPLOYEES;
+
+HIRE_DATE SUBSTR(H                                                                                                                                                                                      
+--------- --------                                                                                                                                                                                      
+17-JUL-87 17                                                                                                                                                                                            
+21-SEP-89 21                                                                                                                                                                                            
+13-JAN-93 13                                                                                                                                                                                            
+03-JAN-90 03                                                                                                                                                                                            
+21-MAY-91 21                                                                                                                                                                                            
+07-FEB-99 07                                                                                                                                                                                            
+16-NOV-99 16                                                                                                                                                                                            
+17-OCT-95 17                                                                                                                                                                                            
+29-JAN-97 29                                                                                                                                                                                            
+15-MAR-98 15                                                                                                                                                                                            
+09-JUL-98 09                                                                                                                                                                                            
+29-JAN-00 29                                                                                                                                                                                            
+11-MAY-96 11                                                                                                                                                                                            
+24-MAR-98 24                                                                                                                                                                                            
+24-MAY-99 24                                                                                                                                                                                            
+17-SEP-87 17                                                                                                                                                                                            
+17-FEB-96 17                                                                                                                                                                                            
+17-AUG-97 17                                                                                                                                                                                            
+07-JUN-94 07                                                                                                                                                                                            
+07-JUN-94 07                                                                                                                                                                                            
+
+20 rows selected.
+
+SQL> SELECT HIRE_dATE , HIRE_DATE - TRUNC(HIRE_DATE,'MONTH') + 1 FROM EMPLOYEES;
+
+HIRE_DATE HIRE_DATE-TRUNC(HIRE_DATE,'MONTH')+1                                                                                                                                                          
+--------- ------------------------------------                                                                                                                                                          
+17-JUL-87                                   17                                                                                                                                                          
+21-SEP-89                                   21                                                                                                                                                          
+13-JAN-93                                   13                                                                                                                                                          
+03-JAN-90                                    3                                                                                                                                                          
+21-MAY-91                                   21                                                                                                                                                          
+07-FEB-99                                    7                                                                                                                                                          
+16-NOV-99                                   16                                                                                                                                                          
+17-OCT-95                                   17                                                                                                                                                          
+29-JAN-97                                   29                                                                                                                                                          
+15-MAR-98                                   15                                                                                                                                                          
+09-JUL-98                                    9                                                                                                                                                          
+29-JAN-00                                   29                                                                                                                                                          
+11-MAY-96                                   11                                                                                                                                                          
+24-MAR-98                                   24                                                                                                                                                          
+24-MAY-99                                   24                                                                                                                                                          
+17-SEP-87                                   17                                                                                                                                                          
+17-FEB-96                                   17                                                                                                                                                          
+17-AUG-97                                   17                                                                                                                                                          
+07-JUN-94                                    7                                                                                                                                                          
+07-JUN-94                                    7                                                                                                                                                          
+
+20 rows selected.
+
+SQL> REM FIND NUMBER OF DAYS WORKED IN JOINING MONTH.
+SQL> 
+SQL> SELECT HIRE_DATE FROM EMPLOYEES;
+
+HIRE_DATE                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+17-JUL-87                                                                                                                                                                                               
+21-SEP-89                                                                                                                                                                                               
+13-JAN-93                                                                                                                                                                                               
+03-JAN-90                                                                                                                                                                                               
+21-MAY-91                                                                                                                                                                                               
+07-FEB-99                                                                                                                                                                                               
+16-NOV-99                                                                                                                                                                                               
+17-OCT-95                                                                                                                                                                                               
+29-JAN-97                                                                                                                                                                                               
+15-MAR-98                                                                                                                                                                                               
+09-JUL-98                                                                                                                                                                                               
+29-JAN-00                                                                                                                                                                                               
+11-MAY-96                                                                                                                                                                                               
+24-MAR-98                                                                                                                                                                                               
+24-MAY-99                                                                                                                                                                                               
+17-SEP-87                                                                                                                                                                                               
+17-FEB-96                                                                                                                                                                                               
+17-AUG-97                                                                                                                                                                                               
+07-JUN-94                                                                                                                                                                                               
+07-JUN-94                                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> SELECT HIRE_DATE , ADD_MONTHS(TRUNC(HIRE_DATE,'MM'),1) - HIRE_DATE DAYS_WORKED FROM EMPLOYEES;
+
+HIRE_DATE DAYS_WORKED                                                                                                                                                                                   
+--------- -----------                                                                                                                                                                                   
+17-JUL-87          15                                                                                                                                                                                   
+21-SEP-89          10                                                                                                                                                                                   
+13-JAN-93          19                                                                                                                                                                                   
+03-JAN-90          29                                                                                                                                                                                   
+21-MAY-91          11                                                                                                                                                                                   
+07-FEB-99          22                                                                                                                                                                                   
+16-NOV-99          15                                                                                                                                                                                   
+17-OCT-95          15                                                                                                                                                                                   
+29-JAN-97           3                                                                                                                                                                                   
+15-MAR-98          17                                                                                                                                                                                   
+09-JUL-98          23                                                                                                                                                                                   
+29-JAN-00           3                                                                                                                                                                                   
+11-MAY-96          21                                                                                                                                                                                   
+24-MAR-98           8                                                                                                                                                                                   
+24-MAY-99           8                                                                                                                                                                                   
+17-SEP-87          14                                                                                                                                                                                   
+17-FEB-96          13                                                                                                                                                                                   
+17-AUG-97          15                                                                                                                                                                                   
+07-JUN-94          24                                                                                                                                                                                   
+07-JUN-94          24                                                                                                                                                                                   
+
+20 rows selected.
+
+SQL> REM 1 FIND DAY NUMBER OF QUARTER ON WHICH EMPLOYEE WERE HIRED
+SQL> 
+SQL> REM 2 FIND NUMBER OF DAYS WORKED IN JOINING YEAR
+SQL> 
+SQL> 
+SQL> 
+SQL> REM 1 FIND DAY NUMBER OF QUARTER ON WHICH EMPLOYEE WERE HIRED
+SQL> 
+SQL> SELECT HIRE_DATE , HIRE_DATE - TRUNC(HIRE_DATE,'Q') + 1 FROM EMPLOYEES;
+
+HIRE_DATE HIRE_DATE-TRUNC(HIRE_DATE,'Q')+1                                                                                                                                                              
+--------- --------------------------------                                                                                                                                                              
+17-JUL-87                               17                                                                                                                                                              
+21-SEP-89                               83                                                                                                                                                              
+13-JAN-93                               13                                                                                                                                                              
+03-JAN-90                                3                                                                                                                                                              
+21-MAY-91                               51                                                                                                                                                              
+07-FEB-99                               38                                                                                                                                                              
+16-NOV-99                               47                                                                                                                                                              
+17-OCT-95                               17                                                                                                                                                              
+29-JAN-97                               29                                                                                                                                                              
+15-MAR-98                               74                                                                                                                                                              
+09-JUL-98                                9                                                                                                                                                              
+29-JAN-00                               29                                                                                                                                                              
+11-MAY-96                               41                                                                                                                                                              
+24-MAR-98                               83                                                                                                                                                              
+24-MAY-99                               54                                                                                                                                                              
+17-SEP-87                               79                                                                                                                                                              
+17-FEB-96                               48                                                                                                                                                              
+17-AUG-97                               48                                                                                                                                                              
+07-JUN-94                               68                                                                                                                                                              
+07-JUN-94                               68                                                                                                                                                              
+
+20 rows selected.
+
+SQL> REM 2 FIND NUMBER OF DAYS WORKED IN JOINING YEAR
+SQL> 
+SQL> SELECT HIRE_DATE , ADD_MONTHS(TRUNC(HIRE_DATE,'YYYY'),12) - HIRE_DATE FROM EMPLOYEES;
+
+HIRE_DATE ADD_MONTHS(TRUNC(HIRE_DATE,'YYYY'),12)-HIRE_DATE                                                                                                                                              
+--------- ------------------------------------------------                                                                                                                                              
+17-JUL-87                                              168                                                                                                                                              
+21-SEP-89                                              102                                                                                                                                              
+13-JAN-93                                              353                                                                                                                                              
+03-JAN-90                                              363                                                                                                                                              
+21-MAY-91                                              225                                                                                                                                              
+07-FEB-99                                              328                                                                                                                                              
+16-NOV-99                                               46                                                                                                                                              
+17-OCT-95                                               76                                                                                                                                              
+29-JAN-97                                              337                                                                                                                                              
+15-MAR-98                                              292                                                                                                                                              
+09-JUL-98                                              176                                                                                                                                              
+29-JAN-00                                              338                                                                                                                                              
+11-MAY-96                                              235                                                                                                                                              
+24-MAR-98                                              283                                                                                                                                              
+24-MAY-99                                              222                                                                                                                                              
+17-SEP-87                                              106                                                                                                                                              
+17-FEB-96                                              319                                                                                                                                              
+17-AUG-97                                              137                                                                                                                                              
+07-JUN-94                                              208                                                                                                                                              
+07-JUN-94                                              208                                                                                                                                              
+
+20 rows selected.
+
+SQL> REM ROUND : WE CAN ROUND DATE MAINLY 3 STYLES : 1 MONTH 2 Q/QUARTER 3 YEAR
+SQL> 
+SQL> REM ROUND WITH MONTH : IF INPUT DATE FALLS IN FIRST HALF OF MONTH, IT WILL RETURN SAME/INPUT MONTH'S FIRST DATE.
+SQL> 
+SQL> REM                    IF INPUT DATE FALLS IN SECOND HALF OF MONTH, IT WILL RETURN NEXT MONTH'S FIRST DATE.
+SQL> 
+SQL> 
+SQL> REM ROUND WITH Q/QUARTER : IF INPUT DATE FALLS IN FIRST HALF OF QUARTER, IT WILL RETURN SAME/INPUT QUARTER'S FIRST DATE.
+SQL> 
+SQL> REM                        IF INPUT DATE FALLS IN SECOND HALF OF QUARTER, IT WILL RETURN NEXT QUARTER'S FIRST DATE.
+SQL> 
+SQL> 
+SQL> REM ROUND WITH YEAR : IF INPUT DATE FALLS IN FIRST HALF OF YEAR, IT WILL RETURN SAME/INPUT YEAR'S FIRST DATE.
+SQL> 
+SQL> REM                   IF INPUT DATE FALLS IN SECOND HALF OF YEAR, IT WILL RETURN NEXT YEAR'S FIRST DATE.
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                     
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------                                                     
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90                                                     
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90                                                     
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90                                                     
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60                                                     
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60                                                     
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60                                                     
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50                                                     
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50                                                     
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50                                                     
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50                                                     
+        144 Peter           Vargas                     650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50                                                     
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80                                                     
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80                                                     
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80                                                     
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149                                                                   
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10                                                     
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20                                                     
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20                                                     
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110                                                     
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110                                                     
+
+20 rows selected.
+
+SQL> SELECT HIRE_DATE , ROUND(HIRE_DATE,'MONTH') FROM EMPLOYEES;
+
+HIRE_DATE ROUND(HIR                                                                                                                                                                                     
+--------- ---------                                                                                                                                                                                     
+17-JUL-87 01-AUG-87                                                                                                                                                                                     
+21-SEP-89 01-OCT-89                                                                                                                                                                                     
+13-JAN-93 01-JAN-93                                                                                                                                                                                     
+03-JAN-90 01-JAN-90                                                                                                                                                                                     
+21-MAY-91 01-JUN-91                                                                                                                                                                                     
+07-FEB-99 01-FEB-99                                                                                                                                                                                     
+16-NOV-99 01-DEC-99                                                                                                                                                                                     
+17-OCT-95 01-NOV-95                                                                                                                                                                                     
+29-JAN-97 01-FEB-97                                                                                                                                                                                     
+15-MAR-98 01-MAR-98                                                                                                                                                                                     
+09-JUL-98 01-JUL-98                                                                                                                                                                                     
+29-JAN-00 01-FEB-00                                                                                                                                                                                     
+11-MAY-96 01-MAY-96                                                                                                                                                                                     
+24-MAR-98 01-APR-98                                                                                                                                                                                     
+24-MAY-99 01-JUN-99                                                                                                                                                                                     
+17-SEP-87 01-OCT-87                                                                                                                                                                                     
+17-FEB-96 01-MAR-96                                                                                                                                                                                     
+17-AUG-97 01-SEP-97                                                                                                                                                                                     
+07-JUN-94 01-JUN-94                                                                                                                                                                                     
+07-JUN-94 01-JUN-94                                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> REM 1 DISPLAY THOSE WHO WERE HIRED IN FIRST HALF OF ANY MONTH. (IGNORE YEAR)
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE FROM EMPLOYEES WHERE TRUNC(HIRE_DATE,'MM') = ROUND(HIRE_DATE,'MM');
+
+FIRST_NAME      HIRE_DATE                                                                                                                                                                               
+--------------- ---------                                                                                                                                                                               
+Lex             13-JAN-93                                                                                                                                                                               
+Alexander       03-JAN-90                                                                                                                                                                               
+Diana           07-FEB-99                                                                                                                                                                               
+Randall         15-MAR-98                                                                                                                                                                               
+Peter           09-JUL-98                                                                                                                                                                               
+Ellen           11-MAY-96                                                                                                                                                                               
+Shelley         07-JUN-94                                                                                                                                                                               
+William         07-JUN-94                                                                                                                                                                               
+
+8 rows selected.
+
+SQL> REM DISPLAY THOSE WHO WERE HIRED IN SECOND HALF OF ANY QUARTER
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE FROM EMPLOYEES WHERE TRUNC(HIRE_DATE,'Q') != ROUND(HIRE_DATE,'Q');
+
+FIRST_NAME      HIRE_DATE                                                                                                                                                                               
+--------------- ---------                                                                                                                                                                               
+Neena           21-SEP-89                                                                                                                                                                               
+Bruce           21-MAY-91                                                                                                                                                                               
+Kevin           16-NOV-99                                                                                                                                                                               
+Randall         15-MAR-98                                                                                                                                                                               
+Jonathon        24-MAR-98                                                                                                                                                                               
+Kimerely        24-MAY-99                                                                                                                                                                               
+Jennifer        17-SEP-87                                                                                                                                                                               
+Michael         17-FEB-96                                                                                                                                                                               
+Pat             17-AUG-97                                                                                                                                                                               
+Shelley         07-JUN-94                                                                                                                                                                               
+William         07-JUN-94                                                                                                                                                                               
+
+11 rows selected.
+
+SQL> REM CHARACTER 14 , NUMBER 7 , DATE 8
+SQL> 
+SQL> REM CHARACTER : UPPER LOWER INITCAP CONCAT LPAD RPAD LTRIM RTRIM TRIM LENGTH TRANSLATE REPLACE SUBSTR INSTR
+SQL> 
+SQL> REM NUMBER : POWER SQRT MOD FLOOR CEIL TRUNC ROUND
+SQL> 
+SQL> REM DATE : SYSDATE CURRENT_DATE ADD_MONTHS MONTHS_BETWEEN LAST_DAY NEXT_DAY TRUNC ROUND
+SQL> 
+SQL> SPOOL OFF

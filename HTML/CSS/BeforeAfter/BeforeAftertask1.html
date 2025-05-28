@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-1</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .main{
+        display: flex;
+    }
+    .box1{
+        width: 300px;
+        height: 300px;
+        background-image: url('https://t3.ftcdn.net/jpg/05/97/92/78/360_F_597927853_iZIpn7Blgg3TPd1XEKgF1KhLRuqNxhiU.jpg');
+        background-size: cover;
+        margin: 60px;
+    }
+    .box1::before{
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 150px;
+        left: 60px;
+        background-color: rgba(0, 128, 0, 0.693);
+        transition: 1s;
+    }
+    .box1::after{
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 150px;
+        right: 1176px;
+        bottom: 370px;
+        /* left: 0; */
+        background-color: rgba(165, 42, 42, 0.634);
+        transition: 1s;
+    }
+    .box1:hover::before{
+        
+        width: 0;
+        transition: 1s;
+    }
+    .box1:hover::after{
+        
+        width: 0;
+        transition: 1s;
+    }
+    .box2{
+        width: 300px;
+        height: 300px;
+        background-image: url('https://t3.ftcdn.net/jpg/05/97/92/78/360_F_597927853_iZIpn7Blgg3TPd1XEKgF1KhLRuqNxhiU.jpg');
+        background-size: cover;
+        margin: 60px;
+    }
+    .box2::before{
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        top: 60px;
+        background-color: rgba(0, 128, 128, 0.686);
+        transition: 1s;
+    }
+    .box2::after{
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background-color: rgba(255, 68, 0, 0.684);
+        right: 756px;
+        bottom: 370px;
+        transition: 1s;
+    }
+    .box2:hover::before{
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+        border-top-right-radius: 50%;
+        transition: 1s;
+        width: 75px;
+        height: 75px;
+    }
+    .box2:hover::after{
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        transition: 1s;
+        width: 75px;
+        height: 75px;
+    }
+    .box3{
+        width: 300px;
+        height: 300px;
+        background-image: url('https://t3.ftcdn.net/jpg/05/97/92/78/360_F_597927853_iZIpn7Blgg3TPd1XEKgF1KhLRuqNxhiU.jpg');
+        background-size: cover;
+        margin: 60px;
+    }
+    .box3::before{
+        content: '';
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(0, 128, 0, 0.658);
+        /* top: 60px; */
+        transition: 5s;
+    }
+    .box3:hover::before{
+        bottom: 370px;
+        /* right: 336px; */
+        transition: 5s;
+    }
+    .box3::after{
+        content: '';
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(165, 42, 42, 0.715);
+        right: 336px;
+        bottom: 370px;
+        transition: 5s;
+    }
+    .box3:hover::after{
+        top: 60px;
+        /* left: 900px; */
+        transition: 5s;
+    }
+
+</style>
+<body>
+    <div class="main">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+    </div>
+</body>
+</html>

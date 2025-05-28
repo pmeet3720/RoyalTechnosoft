@@ -1,0 +1,7 @@
+MCQs
+8.1__ b 25
+8.2__ b 9
+8.3__ a static memory allocation
+8.4__ d garbage value
+8.5__ c char student[5][30]
+8.6__ c 400

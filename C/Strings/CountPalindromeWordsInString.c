@@ -51,7 +51,7 @@ int checkPalindrome(char word[]){
     }
     len = i;
 
-    for (i = 0, j = len - 1; word[i] != '\0';i++,j--){
+    for (i = 0, j = len - 1; i<=j;i++,j--){
         if(word[j]=='!' || word[j]=='.'){
             j = j - 1;
             flag = 1;

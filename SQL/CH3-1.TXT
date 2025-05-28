@@ -1,0 +1,712 @@
+SQL> 
+SQL> REM FUNCTIONS :
+SQL> 
+SQL> REM LEVELS OF FUNCTIONS : 1 SINGLE ROW 2 MULTI ROW
+SQL> 
+SQL> REM SINGLE ROW : IT TAKES/READS SINGLE ROW AT A TIME AND RETRUNS SINGLE VALUE FOR EACH ROW.
+SQL> 
+SQL> SELECT EMAIL , LOWER(EMAIL) FROM EMPLOYEES;
+
+EMAIL      LOWER(EMAI                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+SKING      sking                                                                                                                                                                                        
+NKOCHHAR   nkochhar                                                                                                                                                                                     
+LDEHAAN    ldehaan                                                                                                                                                                                      
+AHUNOLD    ahunold                                                                                                                                                                                      
+BERNST     bernst                                                                                                                                                                                       
+DLORENTZ   dlorentz                                                                                                                                                                                     
+KMOURGOS   kmourgos                                                                                                                                                                                     
+TRAJS      trajs                                                                                                                                                                                        
+CDAVIES    cdavies                                                                                                                                                                                      
+RMATOS     rmatos                                                                                                                                                                                       
+                                                                                                                                                                                                        
+EZLOTKEY   ezlotkey                                                                                                                                                                                     
+EABEL      eabel                                                                                                                                                                                        
+JTAYLOR    jtaylor                                                                                                                                                                                      
+KGRANT     kgrant                                                                                                                                                                                       
+JWHALEN    jwhalen                                                                                                                                                                                      
+MHARTSTE   mhartste                                                                                                                                                                                     
+PFAY       pfay                                                                                                                                                                                         
+SHIGGINS   shiggins                                                                                                                                                                                     
+WGIETZ     wgietz                                                                                                                                                                                       
+
+20 rows selected.
+
+SQL> SELECT SALARY FROM EMPLOYEES ORDER BY 1;
+
+    SALARY                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+      2500                                                                                                                                                                                              
+      2600                                                                                                                                                                                              
+      3100                                                                                                                                                                                              
+      3500                                                                                                                                                                                              
+      4200                                                                                                                                                                                              
+      4400                                                                                                                                                                                              
+      5800                                                                                                                                                                                              
+      6000                                                                                                                                                                                              
+      6000                                                                                                                                                                                              
+      7000                                                                                                                                                                                              
+      8300                                                                                                                                                                                              
+      8600                                                                                                                                                                                              
+      9000                                                                                                                                                                                              
+     10500                                                                                                                                                                                              
+     11000                                                                                                                                                                                              
+     12000                                                                                                                                                                                              
+     13000                                                                                                                                                                                              
+     17000                                                                                                                                                                                              
+     17000                                                                                                                                                                                              
+     24000                                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> SELECT MAX(SALARY) FROM EMPLOYEES;
+
+MAX(SALARY)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+      24000                                                                                                                                                                                             
+
+SQL> SELECT DEPARTMENT_ID , SALARY FROM EMPLOYEES ORDER BY 1,2;
+
+DEPARTMENT_ID     SALARY                                                                                                                                                                                
+------------- ----------                                                                                                                                                                                
+           10       4400                                                                                                                                                                                
+           20       6000                                                                                                                                                                                
+           20      13000                                                                                                                                                                                
+           50       2500                                                                                                                                                                                
+           50       2600                                                                                                                                                                                
+           50       3100                                                                                                                                                                                
+           50       3500                                                                                                                                                                                
+           50       5800                                                                                                                                                                                
+           60       4200                                                                                                                                                                                
+           60       6000                                                                                                                                                                                
+           60       9000                                                                                                                                                                                
+           80       8600                                                                                                                                                                                
+           80      10500                                                                                                                                                                                
+           80      11000                                                                                                                                                                                
+           90      17000                                                                                                                                                                                
+           90      17000                                                                                                                                                                                
+           90      24000                                                                                                                                                                                
+          110       8300                                                                                                                                                                                
+          110      12000                                                                                                                                                                                
+                    7000                                                                                                                                                                                
+
+20 rows selected.
+
+SQL> SELECT DEPARTMENT_ID , MAX(SALARY) FROM EMPLOYEES GROUP BY DEPARTMENT_ID ORDER BY 1;
+
+DEPARTMENT_ID MAX(SALARY)                                                                                                                                                                               
+------------- -----------                                                                                                                                                                               
+           10        4400                                                                                                                                                                               
+           20       13000                                                                                                                                                                               
+           50        5800                                                                                                                                                                               
+           60        9000                                                                                                                                                                               
+           80       11000                                                                                                                                                                               
+           90       24000                                                                                                                                                                               
+          110       12000                                                                                                                                                                               
+                     7000                                                                                                                                                                               
+
+8 rows selected.
+
+SQL> REM SINGLE ROW FUNCTIONS :
+SQL> 
+SQL> REM TYPES OF SINGLE ROW FUNCTIONS : 1 CHARACTER 2 NUMBER 3 DATE 4 CONVERSION 5 GENERAL
+SQL> 
+SQL> REM CHAPTER 3 : 1 CHARACTER(14) 2 NUMBER(7) 3 DATE(8)
+SQL> 
+SQL> REM CHAPTER 4 : 4 CONVERSION(3) 5 GENERAL(7)
+SQL> 
+SQL> 
+SQL> 
+SQL> REM CHARACTER FUNCTIONS :
+SQL> 
+SQL> REM TYPES OF CHARACTER FUNCTIONS : 1 CASE MANIPULATION 2 CHARACTER MANIPULATION
+SQL> 
+SQL> REM MANIPULATION : ANY TYPE OF CHANGES
+SQL> 
+SQL> REM CASE MANIPULATION FUNCTIONS :
+SQL> 
+SQL> REM LIST OF CASE MANIPULATION FUNCTIONS : 1 UPPER 2 LOWER 3 INITCAP
+SQL> 
+SQL> REM 1 SHRI GANESH           2 shri ganesh           3 Shri G
+SQL> 
+SQL> 
+SQL> REM 1 SHRI GANESH           2 shri ganesh           3 Shri Ganesh                         4 sHRI GANesh  ShRi GANesH
+SQL> 
+SQL> REM 1 CAPITAL/UPPER         2 SMALL/LOWER           3 PROPER/CAMEL/INITIAL CAPITAL        4 MIxed
+SQL> 
+SQL> SELECT UPPER('sHRI GANesh') FROM DUAL;
+
+UPPER('SHRI                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+SHRI GANESH                                                                                                                                                                                             
+
+SQL> SELECT UPPER('sHRI$3GANesh') FROM DUAL;
+
+UPPER('SHRI$                                                                                                                                                                                            
+------------                                                                                                                                                                                            
+SHRI$3GANESH                                                                                                                                                                                            
+
+SQL> SELECT LOWER('sHRI$3GANesh') FROM DUAL;
+
+LOWER('SHRI$                                                                                                                                                                                            
+------------                                                                                                                                                                                            
+shri$3ganesh                                                                                                                                                                                            
+
+SQL> 
+SQL> 
+SQL> SELECT INITCAP('sHRI GANesh') FROM DUAL;
+
+INITCAP('SH                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+Shri Ganesh                                                                                                                                                                                             
+
+SQL> REM TYPES OF CHARACTERS : 1 ALPHABETS (A-Z, a-z) 2 DIGITS (0-9)   3 SPECIAL CHARACTERS
+SQL> 
+SQL> 
+SQL> SELECT INITCAP('sHRI4GANesh') FROM DUAL;
+
+INITCAP('SH                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+Shri4ganesh                                                                                                                                                                                             
+
+SQL> SELECT INITCAP('sHRI_GANesh') FROM DUAL;
+
+INITCAP('SH                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+Shri_Ganesh                                                                                                                                                                                             
+
+SQL> REM NESTED FUNCTION : WHEN WE USE FUNCTION WITHIN FUNCTION.
+SQL> 
+SQL> REM WE CAN NEST FUNCTION INTINITELY
+SQL> 
+SQL> REM THE EXECUTION PRECEDENCE WILL BE FROM INNER MOST TO OUTER MOST
+SQL> 
+SQL> REM RESULT OF OUTER MOST FUNCTION WILL GET DISPLAYED ON SCREEN
+SQL> 
+SQL> REM RESULT OF OTHER FUNCTIONS WILL BE USED BY IT'S CORRESPONDING OUTER FUNCTION AS INPUT
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT INITCAP(LOWER(UPPER('ADU4marcha$koTHMir'))) FROM DUAL;
+
+INITCAP(LOWER(UPPE                                                                                                                                                                                      
+------------------                                                                                                                                                                                      
+Adu4marcha$Kothmir                                                                                                                                                                                      
+
+SQL> REM CHARACTER FUNCTIONS :
+SQL> 
+SQL> REM LIST OF CHARACTER FUNCTIONS : CONCAT   LPAD RPAD  LTRIM RTRIM TRIM   LENGTH   TRANSLATE REPLACE   SUBSTR INSTR
+SQL> 
+SQL> REM CONCAT :
+SQL> 
+SQL> SELECT FIRST_NAME , LAST_NAME FROM EMPLOYEES;
+
+FIRST_NAME      LAST_NAME                                                                                                                                                                               
+--------------- ---------------                                                                                                                                                                         
+Steven          King                                                                                                                                                                                    
+Neena           Kochhar                                                                                                                                                                                 
+Lex             De Haan                                                                                                                                                                                 
+Alexander       Hunold                                                                                                                                                                                  
+Bruce           Ernst                                                                                                                                                                                   
+Diana           Lorentz                                                                                                                                                                                 
+Kevin           Mourgos                                                                                                                                                                                 
+Trenna          Rajs                                                                                                                                                                                    
+Curtis          Davies                                                                                                                                                                                  
+Randall         Matos                                                                                                                                                                                   
+Peter           Vargas                                                                                                                                                                                  
+Eleni           Zlotkey                                                                                                                                                                                 
+Ellen           Abel                                                                                                                                                                                    
+Jonathon        Taylor                                                                                                                                                                                  
+Kimerely        Grant                                                                                                                                                                                   
+Jennifer        Whalen                                                                                                                                                                                  
+Michael         Hartstein                                                                                                                                                                               
+Pat             Fay                                                                                                                                                                                     
+Shelley         Higgins                                                                                                                                                                                 
+William         Gietz                                                                                                                                                                                   
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME || LAST_NAME FROM EMPLOYEES;
+
+FIRST_NAME||LAST_NAME                                                                                                                                                                                   
+------------------------------                                                                                                                                                                          
+StevenKing                                                                                                                                                                                              
+NeenaKochhar                                                                                                                                                                                            
+LexDe Haan                                                                                                                                                                                              
+AlexanderHunold                                                                                                                                                                                         
+BruceErnst                                                                                                                                                                                              
+DianaLorentz                                                                                                                                                                                            
+KevinMourgos                                                                                                                                                                                            
+TrennaRajs                                                                                                                                                                                              
+CurtisDavies                                                                                                                                                                                            
+RandallMatos                                                                                                                                                                                            
+PeterVargas                                                                                                                                                                                             
+EleniZlotkey                                                                                                                                                                                            
+EllenAbel                                                                                                                                                                                               
+JonathonTaylor                                                                                                                                                                                          
+KimerelyGrant                                                                                                                                                                                           
+JenniferWhalen                                                                                                                                                                                          
+MichaelHartstein                                                                                                                                                                                        
+PatFay                                                                                                                                                                                                  
+ShelleyHiggins                                                                                                                                                                                          
+WilliamGietz                                                                                                                                                                                            
+
+20 rows selected.
+
+SQL> SELECT CONCAT(FIRST_NAME , LAST_NAME) FROM EMPLOYEES;
+
+CONCAT(FIRST_NAME,LAST_NAME)                                                                                                                                                                            
+------------------------------                                                                                                                                                                          
+StevenKing                                                                                                                                                                                              
+NeenaKochhar                                                                                                                                                                                            
+LexDe Haan                                                                                                                                                                                              
+AlexanderHunold                                                                                                                                                                                         
+BruceErnst                                                                                                                                                                                              
+DianaLorentz                                                                                                                                                                                            
+KevinMourgos                                                                                                                                                                                            
+TrennaRajs                                                                                                                                                                                              
+CurtisDavies                                                                                                                                                                                            
+RandallMatos                                                                                                                                                                                            
+PeterVargas                                                                                                                                                                                             
+EleniZlotkey                                                                                                                                                                                            
+EllenAbel                                                                                                                                                                                               
+JonathonTaylor                                                                                                                                                                                          
+KimerelyGrant                                                                                                                                                                                           
+JenniferWhalen                                                                                                                                                                                          
+MichaelHartstein                                                                                                                                                                                        
+PatFay                                                                                                                                                                                                  
+ShelleyHiggins                                                                                                                                                                                          
+WilliamGietz                                                                                                                                                                                            
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME || ' ' || LAST_NAME FROM EMPLOYEES;
+
+FIRST_NAME||''||LAST_NAME                                                                                                                                                                               
+-------------------------------                                                                                                                                                                         
+Steven King                                                                                                                                                                                             
+Neena Kochhar                                                                                                                                                                                           
+Lex De Haan                                                                                                                                                                                             
+Alexander Hunold                                                                                                                                                                                        
+Bruce Ernst                                                                                                                                                                                             
+Diana Lorentz                                                                                                                                                                                           
+Kevin Mourgos                                                                                                                                                                                           
+Trenna Rajs                                                                                                                                                                                             
+Curtis Davies                                                                                                                                                                                           
+Randall Matos                                                                                                                                                                                           
+Peter Vargas                                                                                                                                                                                            
+Eleni Zlotkey                                                                                                                                                                                           
+Ellen Abel                                                                                                                                                                                              
+Jonathon Taylor                                                                                                                                                                                         
+Kimerely Grant                                                                                                                                                                                          
+Jennifer Whalen                                                                                                                                                                                         
+Michael Hartstein                                                                                                                                                                                       
+Pat Fay                                                                                                                                                                                                 
+Shelley Higgins                                                                                                                                                                                         
+William Gietz                                                                                                                                                                                           
+
+20 rows selected.
+
+SQL> SELECT CONCAT(FIRST_NAME , ' ' , LAST_NAME) FROM EMPLOYEES;
+SELECT CONCAT(FIRST_NAME , ' ' , LAST_NAME) FROM EMPLOYEES
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT CONCAT(FIRST_NAME , CONCAT(' ' , LAST_NAME)) FROM EMPLOYEES;
+
+CONCAT(FIRST_NAME,CONCAT('',LAS                                                                                                                                                                         
+-------------------------------                                                                                                                                                                         
+Steven King                                                                                                                                                                                             
+Neena Kochhar                                                                                                                                                                                           
+Lex De Haan                                                                                                                                                                                             
+Alexander Hunold                                                                                                                                                                                        
+Bruce Ernst                                                                                                                                                                                             
+Diana Lorentz                                                                                                                                                                                           
+Kevin Mourgos                                                                                                                                                                                           
+Trenna Rajs                                                                                                                                                                                             
+Curtis Davies                                                                                                                                                                                           
+Randall Matos                                                                                                                                                                                           
+Peter Vargas                                                                                                                                                                                            
+Eleni Zlotkey                                                                                                                                                                                           
+Ellen Abel                                                                                                                                                                                              
+Jonathon Taylor                                                                                                                                                                                         
+Kimerely Grant                                                                                                                                                                                          
+Jennifer Whalen                                                                                                                                                                                         
+Michael Hartstein                                                                                                                                                                                       
+Pat Fay                                                                                                                                                                                                 
+Shelley Higgins                                                                                                                                                                                         
+William Gietz                                                                                                                                                                                           
+
+20 rows selected.
+
+SQL> REM LPAD : TO ADD SOME CHARACTERS TO THE LEFT OF INPUT
+SQL> 
+SQL> SELECT FIRST_NAME , LPAD(FIRST_NAME, 6 ,'#') FROM EMPLOYEES;
+
+FIRST_NAME      LPAD(FIRST_NAME,6,'#')                                                                                                                                                                  
+--------------- ------------------------                                                                                                                                                                
+Steven          Steven                                                                                                                                                                                  
+Neena           #Neena                                                                                                                                                                                  
+Lex             ###Lex                                                                                                                                                                                  
+Alexander       Alexan                                                                                                                                                                                  
+Bruce           #Bruce                                                                                                                                                                                  
+Diana           #Diana                                                                                                                                                                                  
+Kevin           #Kevin                                                                                                                                                                                  
+Trenna          Trenna                                                                                                                                                                                  
+Curtis          Curtis                                                                                                                                                                                  
+Randall         Randal                                                                                                                                                                                  
+Peter           #Peter                                                                                                                                                                                  
+Eleni           #Eleni                                                                                                                                                                                  
+Ellen           #Ellen                                                                                                                                                                                  
+Jonathon        Jonath                                                                                                                                                                                  
+Kimerely        Kimere                                                                                                                                                                                  
+Jennifer        Jennif                                                                                                                                                                                  
+Michael         Michae                                                                                                                                                                                  
+Pat             ###Pat                                                                                                                                                                                  
+Shelley         Shelle                                                                                                                                                                                  
+William         Willia                                                                                                                                                                                  
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , LPAD(FIRST_NAME, 10 ,'#') FROM EMPLOYEES;
+
+FIRST_NAME      LPAD(FIRST_NAME,10,'#')                                                                                                                                                                 
+--------------- ----------------------------------------                                                                                                                                                
+Steven          ####Steven                                                                                                                                                                              
+Neena           #####Neena                                                                                                                                                                              
+Lex             #######Lex                                                                                                                                                                              
+Alexander       #Alexander                                                                                                                                                                              
+Bruce           #####Bruce                                                                                                                                                                              
+Diana           #####Diana                                                                                                                                                                              
+Kevin           #####Kevin                                                                                                                                                                              
+Trenna          ####Trenna                                                                                                                                                                              
+Curtis          ####Curtis                                                                                                                                                                              
+Randall         ###Randall                                                                                                                                                                              
+Peter           #####Peter                                                                                                                                                                              
+Eleni           #####Eleni                                                                                                                                                                              
+Ellen           #####Ellen                                                                                                                                                                              
+Jonathon        ##Jonathon                                                                                                                                                                              
+Kimerely        ##Kimerely                                                                                                                                                                              
+Jennifer        ##Jennifer                                                                                                                                                                              
+Michael         ###Michael                                                                                                                                                                              
+Pat             #######Pat                                                                                                                                                                              
+Shelley         ###Shelley                                                                                                                                                                              
+William         ###William                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , LPAD(FIRST_NAME, 10 ,'#$') FROM EMPLOYEES;
+
+FIRST_NAME      LPAD(FIRST_NAME,10,'#$')                                                                                                                                                                
+--------------- ----------------------------------------                                                                                                                                                
+Steven          #$#$Steven                                                                                                                                                                              
+Neena           #$#$#Neena                                                                                                                                                                              
+Lex             #$#$#$#Lex                                                                                                                                                                              
+Alexander       #Alexander                                                                                                                                                                              
+Bruce           #$#$#Bruce                                                                                                                                                                              
+Diana           #$#$#Diana                                                                                                                                                                              
+Kevin           #$#$#Kevin                                                                                                                                                                              
+Trenna          #$#$Trenna                                                                                                                                                                              
+Curtis          #$#$Curtis                                                                                                                                                                              
+Randall         #$#Randall                                                                                                                                                                              
+Peter           #$#$#Peter                                                                                                                                                                              
+Eleni           #$#$#Eleni                                                                                                                                                                              
+Ellen           #$#$#Ellen                                                                                                                                                                              
+Jonathon        #$Jonathon                                                                                                                                                                              
+Kimerely        #$Kimerely                                                                                                                                                                              
+Jennifer        #$Jennifer                                                                                                                                                                              
+Michael         #$#Michael                                                                                                                                                                              
+Pat             #$#$#$#Pat                                                                                                                                                                              
+Shelley         #$#Shelley                                                                                                                                                                              
+William         #$#William                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , LPAD(FIRST_NAME, 10 ) FROM EMPLOYEES;
+
+FIRST_NAME      LPAD(FIRST_NAME,10)                                                                                                                                                                     
+--------------- ----------------------------------------                                                                                                                                                
+Steven              Steven                                                                                                                                                                              
+Neena                Neena                                                                                                                                                                              
+Lex                    Lex                                                                                                                                                                              
+Alexander        Alexander                                                                                                                                                                              
+Bruce                Bruce                                                                                                                                                                              
+Diana                Diana                                                                                                                                                                              
+Kevin                Kevin                                                                                                                                                                              
+Trenna              Trenna                                                                                                                                                                              
+Curtis              Curtis                                                                                                                                                                              
+Randall            Randall                                                                                                                                                                              
+Peter                Peter                                                                                                                                                                              
+Eleni                Eleni                                                                                                                                                                              
+Ellen                Ellen                                                                                                                                                                              
+Jonathon          Jonathon                                                                                                                                                                              
+Kimerely          Kimerely                                                                                                                                                                              
+Jennifer          Jennifer                                                                                                                                                                              
+Michael            Michael                                                                                                                                                                              
+Pat                    Pat                                                                                                                                                                              
+Shelley            Shelley                                                                                                                                                                              
+William            William                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> REM RPAD : TO ADD SOME CHARACTERS TO THE RIGHT OF INPUT
+SQL> 
+SQL> SELECT FIRST_NAME , RPAD(FIRST_NAME, 6 ,'#') FROM EMPLOYEES;
+
+FIRST_NAME      RPAD(FIRST_NAME,6,'#')                                                                                                                                                                  
+--------------- ------------------------                                                                                                                                                                
+Steven          Steven                                                                                                                                                                                  
+Neena           Neena#                                                                                                                                                                                  
+Lex             Lex###                                                                                                                                                                                  
+Alexander       Alexan                                                                                                                                                                                  
+Bruce           Bruce#                                                                                                                                                                                  
+Diana           Diana#                                                                                                                                                                                  
+Kevin           Kevin#                                                                                                                                                                                  
+Trenna          Trenna                                                                                                                                                                                  
+Curtis          Curtis                                                                                                                                                                                  
+Randall         Randal                                                                                                                                                                                  
+Peter           Peter#                                                                                                                                                                                  
+Eleni           Eleni#                                                                                                                                                                                  
+Ellen           Ellen#                                                                                                                                                                                  
+Jonathon        Jonath                                                                                                                                                                                  
+Kimerely        Kimere                                                                                                                                                                                  
+Jennifer        Jennif                                                                                                                                                                                  
+Michael         Michae                                                                                                                                                                                  
+Pat             Pat###                                                                                                                                                                                  
+Shelley         Shelle                                                                                                                                                                                  
+William         Willia                                                                                                                                                                                  
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , RPAD(FIRST_NAME, 10 ,'#') FROM EMPLOYEES;
+
+FIRST_NAME      RPAD(FIRST_NAME,10,'#')                                                                                                                                                                 
+--------------- ----------------------------------------                                                                                                                                                
+Steven          Steven####                                                                                                                                                                              
+Neena           Neena#####                                                                                                                                                                              
+Lex             Lex#######                                                                                                                                                                              
+Alexander       Alexander#                                                                                                                                                                              
+Bruce           Bruce#####                                                                                                                                                                              
+Diana           Diana#####                                                                                                                                                                              
+Kevin           Kevin#####                                                                                                                                                                              
+Trenna          Trenna####                                                                                                                                                                              
+Curtis          Curtis####                                                                                                                                                                              
+Randall         Randall###                                                                                                                                                                              
+Peter           Peter#####                                                                                                                                                                              
+Eleni           Eleni#####                                                                                                                                                                              
+Ellen           Ellen#####                                                                                                                                                                              
+Jonathon        Jonathon##                                                                                                                                                                              
+Kimerely        Kimerely##                                                                                                                                                                              
+Jennifer        Jennifer##                                                                                                                                                                              
+Michael         Michael###                                                                                                                                                                              
+Pat             Pat#######                                                                                                                                                                              
+Shelley         Shelley###                                                                                                                                                                              
+William         William###                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , RPAD(FIRST_NAME, 10 ,'#$') FROM EMPLOYEES;
+
+FIRST_NAME      RPAD(FIRST_NAME,10,'#$')                                                                                                                                                                
+--------------- ----------------------------------------                                                                                                                                                
+Steven          Steven#$#$                                                                                                                                                                              
+Neena           Neena#$#$#                                                                                                                                                                              
+Lex             Lex#$#$#$#                                                                                                                                                                              
+Alexander       Alexander#                                                                                                                                                                              
+Bruce           Bruce#$#$#                                                                                                                                                                              
+Diana           Diana#$#$#                                                                                                                                                                              
+Kevin           Kevin#$#$#                                                                                                                                                                              
+Trenna          Trenna#$#$                                                                                                                                                                              
+Curtis          Curtis#$#$                                                                                                                                                                              
+Randall         Randall#$#                                                                                                                                                                              
+Peter           Peter#$#$#                                                                                                                                                                              
+Eleni           Eleni#$#$#                                                                                                                                                                              
+Ellen           Ellen#$#$#                                                                                                                                                                              
+Jonathon        Jonathon#$                                                                                                                                                                              
+Kimerely        Kimerely#$                                                                                                                                                                              
+Jennifer        Jennifer#$                                                                                                                                                                              
+Michael         Michael#$#                                                                                                                                                                              
+Pat             Pat#$#$#$#                                                                                                                                                                              
+Shelley         Shelley#$#                                                                                                                                                                              
+William         William#$#                                                                                                                                                                              
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , RPAD(FIRST_NAME, 10) FROM EMPLOYEES;
+
+FIRST_NAME      RPAD(FIRST_NAME,10)                                                                                                                                                                     
+--------------- ----------------------------------------                                                                                                                                                
+Steven          Steven                                                                                                                                                                                  
+Neena           Neena                                                                                                                                                                                   
+Lex             Lex                                                                                                                                                                                     
+Alexander       Alexander                                                                                                                                                                               
+Bruce           Bruce                                                                                                                                                                                   
+Diana           Diana                                                                                                                                                                                   
+Kevin           Kevin                                                                                                                                                                                   
+Trenna          Trenna                                                                                                                                                                                  
+Curtis          Curtis                                                                                                                                                                                  
+Randall         Randall                                                                                                                                                                                 
+Peter           Peter                                                                                                                                                                                   
+Eleni           Eleni                                                                                                                                                                                   
+Ellen           Ellen                                                                                                                                                                                   
+Jonathon        Jonathon                                                                                                                                                                                
+Kimerely        Kimerely                                                                                                                                                                                
+Jennifer        Jennifer                                                                                                                                                                                
+Michael         Michael                                                                                                                                                                                 
+Pat             Pat                                                                                                                                                                                     
+Shelley         Shelley                                                                                                                                                                                 
+William         William                                                                                                                                                                                 
+
+20 rows selected.
+
+SQL> SELECT HIRE_DATE FROM EMPLOYEES;
+
+HIRE_DATE                                                                                                                                                                                               
+---------                                                                                                                                                                                               
+17-JUL-87                                                                                                                                                                                               
+21-SEP-89                                                                                                                                                                                               
+13-JAN-93                                                                                                                                                                                               
+03-JAN-90                                                                                                                                                                                               
+21-MAY-91                                                                                                                                                                                               
+07-FEB-99                                                                                                                                                                                               
+16-NOV-99                                                                                                                                                                                               
+17-OCT-95                                                                                                                                                                                               
+29-JAN-97                                                                                                                                                                                               
+15-MAR-98                                                                                                                                                                                               
+09-JUL-98                                                                                                                                                                                               
+29-JAN-00                                                                                                                                                                                               
+11-MAY-96                                                                                                                                                                                               
+24-MAR-98                                                                                                                                                                                               
+24-MAY-99                                                                                                                                                                                               
+17-SEP-87                                                                                                                                                                                               
+17-FEB-96                                                                                                                                                                                               
+17-AUG-97                                                                                                                                                                                               
+07-JUN-94                                                                                                                                                                                               
+07-JUN-94                                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> REM +++17-JUL-87---
+> 
+SQL> REM +++21-SEP-89---
+> 
+SQL> REM 1 || 2 CONCAT 3 CONCAT || 4 LPAD+RPAD
+SQL> 
+SQL> 
+SQL> SELECT HIRE_DATE , '+++' || HIRE_DATE || '---' FROM EMPLOYEES;
+
+HIRE_DATE '+++'||HIRE_DATE||'---'                                                                                                                                                                       
+--------- ------------------------                                                                                                                                                                      
+17-JUL-87 +++17-JUL-87---                                                                                                                                                                               
+21-SEP-89 +++21-SEP-89---                                                                                                                                                                               
+13-JAN-93 +++13-JAN-93---                                                                                                                                                                               
+03-JAN-90 +++03-JAN-90---                                                                                                                                                                               
+21-MAY-91 +++21-MAY-91---                                                                                                                                                                               
+07-FEB-99 +++07-FEB-99---                                                                                                                                                                               
+16-NOV-99 +++16-NOV-99---                                                                                                                                                                               
+17-OCT-95 +++17-OCT-95---                                                                                                                                                                               
+29-JAN-97 +++29-JAN-97---                                                                                                                                                                               
+15-MAR-98 +++15-MAR-98---                                                                                                                                                                               
+09-JUL-98 +++09-JUL-98---                                                                                                                                                                               
+29-JAN-00 +++29-JAN-00---                                                                                                                                                                               
+11-MAY-96 +++11-MAY-96---                                                                                                                                                                               
+24-MAR-98 +++24-MAR-98---                                                                                                                                                                               
+24-MAY-99 +++24-MAY-99---                                                                                                                                                                               
+17-SEP-87 +++17-SEP-87---                                                                                                                                                                               
+17-FEB-96 +++17-FEB-96---                                                                                                                                                                               
+17-AUG-97 +++17-AUG-97---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> REM CONCAT
+SQL> 
+SQL> SELECT HIRE_DATE , CONCAT('+++',CONCAT(HIRE_DATE , '---')) FROM EMPLOYEES;
+
+HIRE_DATE CONCAT('+++',CONCAT(HIRE                                                                                                                                                                      
+--------- ------------------------                                                                                                                                                                      
+17-JUL-87 +++17-JUL-87---                                                                                                                                                                               
+21-SEP-89 +++21-SEP-89---                                                                                                                                                                               
+13-JAN-93 +++13-JAN-93---                                                                                                                                                                               
+03-JAN-90 +++03-JAN-90---                                                                                                                                                                               
+21-MAY-91 +++21-MAY-91---                                                                                                                                                                               
+07-FEB-99 +++07-FEB-99---                                                                                                                                                                               
+16-NOV-99 +++16-NOV-99---                                                                                                                                                                               
+17-OCT-95 +++17-OCT-95---                                                                                                                                                                               
+29-JAN-97 +++29-JAN-97---                                                                                                                                                                               
+15-MAR-98 +++15-MAR-98---                                                                                                                                                                               
+09-JUL-98 +++09-JUL-98---                                                                                                                                                                               
+29-JAN-00 +++29-JAN-00---                                                                                                                                                                               
+11-MAY-96 +++11-MAY-96---                                                                                                                                                                               
+24-MAR-98 +++24-MAR-98---                                                                                                                                                                               
+24-MAY-99 +++24-MAY-99---                                                                                                                                                                               
+17-SEP-87 +++17-SEP-87---                                                                                                                                                                               
+17-FEB-96 +++17-FEB-96---                                                                                                                                                                               
+17-AUG-97 +++17-AUG-97---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> REM CONCAT ||
+SQL> 
+SQL> SELECT HIRE_DATE , CONCAT('+++',HIRE_DATE) || '---' FROM EMPLOYEES;
+
+HIRE_DATE CONCAT('+++',HIRE_DATE)|                                                                                                                                                                      
+--------- ------------------------                                                                                                                                                                      
+17-JUL-87 +++17-JUL-87---                                                                                                                                                                               
+21-SEP-89 +++21-SEP-89---                                                                                                                                                                               
+13-JAN-93 +++13-JAN-93---                                                                                                                                                                               
+03-JAN-90 +++03-JAN-90---                                                                                                                                                                               
+21-MAY-91 +++21-MAY-91---                                                                                                                                                                               
+07-FEB-99 +++07-FEB-99---                                                                                                                                                                               
+16-NOV-99 +++16-NOV-99---                                                                                                                                                                               
+17-OCT-95 +++17-OCT-95---                                                                                                                                                                               
+29-JAN-97 +++29-JAN-97---                                                                                                                                                                               
+15-MAR-98 +++15-MAR-98---                                                                                                                                                                               
+09-JUL-98 +++09-JUL-98---                                                                                                                                                                               
+29-JAN-00 +++29-JAN-00---                                                                                                                                                                               
+11-MAY-96 +++11-MAY-96---                                                                                                                                                                               
+24-MAR-98 +++24-MAR-98---                                                                                                                                                                               
+24-MAY-99 +++24-MAY-99---                                                                                                                                                                               
+17-SEP-87 +++17-SEP-87---                                                                                                                                                                               
+17-FEB-96 +++17-FEB-96---                                                                                                                                                                               
+17-AUG-97 +++17-AUG-97---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> REM LPAD + RPAD
+SQL> 
+SQL> SELECT HIRE_DATE , RPAD(LPAD(HIRE_DATE,12,'+'),15,'-') FROM EMPLOYEES;
+
+HIRE_DATE RPAD(LPAD(HIRE_DATE,12,'+'),15,'-')                                                                                                                                                           
+--------- ------------------------------------------------------------                                                                                                                                  
+17-JUL-87 +++17-JUL-87---                                                                                                                                                                               
+21-SEP-89 +++21-SEP-89---                                                                                                                                                                               
+13-JAN-93 +++13-JAN-93---                                                                                                                                                                               
+03-JAN-90 +++03-JAN-90---                                                                                                                                                                               
+21-MAY-91 +++21-MAY-91---                                                                                                                                                                               
+07-FEB-99 +++07-FEB-99---                                                                                                                                                                               
+16-NOV-99 +++16-NOV-99---                                                                                                                                                                               
+17-OCT-95 +++17-OCT-95---                                                                                                                                                                               
+29-JAN-97 +++29-JAN-97---                                                                                                                                                                               
+15-MAR-98 +++15-MAR-98---                                                                                                                                                                               
+09-JUL-98 +++09-JUL-98---                                                                                                                                                                               
+29-JAN-00 +++29-JAN-00---                                                                                                                                                                               
+11-MAY-96 +++11-MAY-96---                                                                                                                                                                               
+24-MAR-98 +++24-MAR-98---                                                                                                                                                                               
+24-MAY-99 +++24-MAY-99---                                                                                                                                                                               
+17-SEP-87 +++17-SEP-87---                                                                                                                                                                               
+17-FEB-96 +++17-FEB-96---                                                                                                                                                                               
+17-AUG-97 +++17-AUG-97---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+07-JUN-94 +++07-JUN-94---                                                                                                                                                                               
+
+20 rows selected.
+
+SQL> SPOOL OFF

@@ -1,0 +1,6 @@
+3.1__ a \n
+3.2__ d go
+3.3__ d both 1 and 2
+3.4__ d volatile
+3.5__ a #define MAX_MARKS 100
+3.6__ d all of the above

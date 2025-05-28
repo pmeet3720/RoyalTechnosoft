@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex Task</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .main {
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+    .sideNav {
+      background-color: rgba(0, 0, 0, 0.882);
+      flex: 18%;
+      width: 18%;
+      height: 100vh;
+    }
+    .adminPage {
+      flex: 80%;
+    }
+    .links {
+      list-style-type: none;
+      padding: 48px 100px;
+      /* text-align: center; */
+      border-bottom: 1px solid rgba(189, 189, 189, 0.4);
+    }
+    .links a {
+      color: white;
+      text-decoration: none;
+      font-size: 22px;
+    }
+    .adminNav {
+      background-color: rgba(0, 0, 0, 0.838);
+      width: 90%;
+      height: 60px;
+      padding: 20px;
+      margin: auto;
+      margin-top: 30px;
+      color: white;
+    }
+    .boxex {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 50px;
+    }
+    .box1 {
+      background-color: lightsalmon;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      border-radius: 20px;
+      justify-content: center;
+      /* align-items: center; */
+      /* line-height: 200px; */
+    }
+    .box2 {
+      background-color: lightpink;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      border-radius: 20px;
+    }
+    .box3 {
+      background-color: green;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      border-radius: 20px;
+    }
+    .heading {
+      flex: 25%;
+      font-size: 22px;
+      border-bottom: 2px solid white;
+      font-family: arial;
+      padding-top: 10px;
+    }
+    .number {
+      flex: 75%;
+      font-size: 45px;
+      font-family: arial;
+      padding-top: 50px;
+    }
+    .headingRow{
+        background-color: rgba(0, 0, 0, 0.822);
+        height: 50px;
+        color: white;
+        font-family: arial;
+    }
+    .dataRow{
+        height: 50px;
+        text-align: center;
+        background-color: rgb(241, 241, 241);
+        border-radius: 5px solid rgba(211, 211, 211, 0.495);
+        font-family: arial;
+    }
+    .dataRow td a{
+        color: blue;
+    }
+    .bottomtable{
+        margin-top: 50px;
+    }
+    table{
+        margin: auto;
+        width: 90%;
+    }
+  </style>
+  <body>
+    <div class="main">
+      <div class="sideNav">
+        <ul>
+          <li class="links"><a href="">Logo</a></li>
+          <li class="links"><a href="">Homes</a></li>
+          <li class="links"><a href="">Products</a></li>
+          <li class="links"><a href="">Sales</a></li>
+          <li class="links"><a href="">Orders</a></li>
+          <li class="links"><a href="">Stocks</a></li>
+        </ul>
+      </div>
+      <div class="adminPage">
+        <div class="adminNav">
+          <p>admin@gmail.com</p>
+        </div>
+        <div class="boxex">
+          <div class="box1">
+            <p class="heading">Products</p>
+            <p class="number">123</p>
+          </div>
+          <div class="box2">
+            <p class="heading">Departments</p>
+            <p class="number">12</p>
+          </div>
+          <div class="box3">
+            <p class="heading">Profit</p>
+            <p class="number">98999</p>
+          </div>
+        </div>
+        <div class="bottomtable">
+          <table cellspacing="0">
+            <tr class="headingRow">
+              <th>#no</th>
+              <th>Product</th>
+              <th>Product code</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+            <tr class="dataRow">
+                <td>1</td>
+                <td>Samsung</td>
+                <td>Sam01</td>
+                <td>32000</td>
+                <td><a href="">Edit</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

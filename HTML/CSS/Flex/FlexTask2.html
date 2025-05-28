@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex Task</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .main {
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+    .sideNav {
+      background-color: rgba(0, 0, 0, 0.921);
+      flex: 20%;
+      color: white;
+      text-align: center;
+    }
+    .page {
+      background-color: rgb(143, 141, 141);
+      color: white;
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+      flex: 80%;
+      /* display: flex;
+      flex-direction: column; */
+      /* align-items: center; */
+      /* justify-content: center; */
+    }
+    .sideNav h1 {
+      font-family: arial;
+      border-bottom: 2px solid white;
+      font-size: 43px;
+      padding: 20px;
+    }
+    .links {
+      list-style-type: none;
+      font-family: arial;
+      font-size: 18px;
+      padding: 45px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.147);
+    }
+    .heading {
+      font-family: arial;
+      font-size: 40px;
+      padding-top: 45px;
+    }
+    table tr .headData{
+        background-color: rgba(0, 0, 0, 0.486);
+        text-align: left;
+        font-family: arial;
+        padding-left: 20px;
+    }
+    .servicePage{
+        width: 90%;
+        margin: auto;
+        margin-top: 30px;
+    }
+    .secondRow td{
+        border: 1px solid rgba(255, 255, 255, 0.486);
+    }
+  </style>
+  <body>
+    <div class="main">
+      <div class="sideNav">
+        <h1>Logo</h1>
+        <ul>
+          <li class="links">Home</li>
+          <li class="links">Service</li>
+          <li class="links">Contact</li>
+          <li class="links">About</li>
+          <li class="links">Login</li>
+        </ul>
+      </div>
+      <div class="page">
+        <h1 class="heading">Royal Technosoft</h1>
+        <div class="servicePage">
+            <table width="100%">
+                <tr height="80px"><td class="headData">Service Page</td></tr>
+                <tr height="70px" class="secondRow"><td></td></tr>
+
+            </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

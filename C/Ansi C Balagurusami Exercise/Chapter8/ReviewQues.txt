@@ -1,0 +1,78 @@
+8.1 True and false
+a. true
+b. true
+c. false
+d. true
+e. true
+f. true
+g. true
+h. false
+i. false
+j. false
+k. true
+l. true
+
+8.2 Fill in the blanks
+a. index variable
+b. 2D array
+c. sorting
+d. runtime
+e. dinamic array
+f. garbage value
+g. null character
+
+8.3
+for(i=0;i<5;i++){
+    for(j=0;j<5;j++){
+        if(i==j){
+            print("1")
+        }else{
+            print("0")
+        }
+    }
+}
+
+8.4___ e. int matrix [3][5];
+
+8.5___ b,c,d,e
+
+8.6___ data structure is structured way of storing data of same type or different types. Array is called data structure because it allows to store data of same type in sequential manner.
+
+8.7__ dynamic array is allocating memory to an array at runtime. It is created using malloc keyword
+
+8.8  a. with values fewer than specified size it behaves anonymously giving garbage value at remaining positions.
+     b. with values more than specified size it is logically wrong as you can'nt access elements beyond given size index.
+
+## Debuging Exercises:
+
+8.1__ a. int score (100); is syntaclly wrong way of declaring an array, its correct way is: int score[100];
+      b. float values [10,15]; is syntaclly wrong, its correct way is: float values [10][15];
+      c. char name[15]; is correct
+      d. float average [ROW],[COLUMN]; is syntaclly wrong, its correct way is: float average [ROW][COLUMN];
+      e. double salary[i+ROW]; is correct
+      f. long int number [ROW]; is correct
+      g. int sum[]; is syntaclly wrong, u need to give it fixed size or a constant size while declaring. int sum[10];
+      h. int array x[COLUMN]; is wrong way, array variable name is declared syntaxlly.
+
+8.2__ a. int number[] = {0,0,0,0,0}; is corrct way, no error
+      b. float item[3][2] = {0,1,2,3,4,5}; is syntaclly correct
+      c. char word[] = {'A','R','R','A','Y'}; is correct
+      d. int m[2,4] = {{0,0,0,0},{1,2,3,4}}; is wrong, it will give error - array declaration is wrong, error: expected ']' before ',' token
+      e. float result[10] = 0; is correct
+
+8.3__ int A[5][4];
+      float B[4];
+
+     a. &(ampersand) is missing while scanning array b
+     b. no error
+     c. no error
+     d. no error
+
+8.4__ size not assign to floating array while declaring it
+
+8.5__ 15
+
+8.6__ H L O W R D
+
+<--Array done-->
+

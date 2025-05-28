@@ -1,0 +1,5 @@
+6.1__ d all of the above
+6.2__ d none of the above
+6.3__ b true if 5<=a<=10, false otherwise
+6.4__ a true if given positive integer is multiple of 3 and 5; false otherwise
+6.5__ d  compiler gives syntax error and the program is not executed

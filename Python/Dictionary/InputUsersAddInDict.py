@@ -19,6 +19,12 @@ for ele in marks:
 print(d2)
 
 
+
+print(d1)
+
+
+
+
 # d1[name1] = marks1
 # d1[name2] = marks2
 # d1[name3] = marks3

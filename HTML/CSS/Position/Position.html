@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Position</title>
+  </head>
+  <style>
+    .box{
+        width: 100px;
+        height: 100px;
+    }
+    .red{
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .green{
+        background-color: green;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .blue{
+        background-color: blue;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .yellow{
+        background-color: yellow;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+  </style>
+  <body>
+      <div class="box red">Relative</div>
+      <div class="box green">Absolute</div>
+      <div class="box blue">Fixed</div>
+      <div class="box yellow">Sticky</div>
+  </body>
+</html>

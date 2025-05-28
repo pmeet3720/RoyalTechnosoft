@@ -1,0 +1,88 @@
+6.1 true and false
+a. true
+b. true
+c. false
+d. false
+e. true
+f. false
+g. true
+h. true
+i. true
+j. true
+k. false
+l. true
+
+6.2 Fill in the blanks
+a. && operator
+b. switch case
+c. break
+d. (x==y)
+e. single statement
+f. conditional or ternary
+g. goto
+
+6.3 
+if n = 1
+x = 2
+y = 0
+else if n = 0
+x = 1
+y = 1
+
+6.4
+a. if ( grade <=59 && grade >= 50 )
+    second = second + 1;
+
+   if ( grade >= 50 ){
+      if( grade <= 59 ){
+        second = second + 1;
+      }
+   }
+
+b. if ( number > 100 || number < 0  )
+    printf("Out of range");
+
+   if (number > 100)
+    printf("Out of range");
+   if (number < 0)
+    printf("Out of range");
+
+Operator precedence  =  Logical Not (!) > logical And (&&) > logical Or (||)
+
+6.5
+a. false
+b. true
+c. false
+d. true
+
+6.6
+a. true
+b. false (colon after case statement)
+c. false (missing semicolon)
+d. true
+
+6.10
+output: 8
+
+6.11
+output: Delhi Bangalore
+
+6.12
+1
+4
+3
+8
+
+6.13
+runtime error: missing expression
+
+6.14
+x = 25
+
+6.17
+outout - 10
+
+6.18
+output - no output
+
+

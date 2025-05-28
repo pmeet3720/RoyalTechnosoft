@@ -1,0 +1,436 @@
+SQL> 
+SQL> CL SCR
+
+SQL> REM DATE FUNCTIONS : SYSDATE CURRENT_DATE   ADD_MONTHS MONTHS_BETWEEN    LATS_DAY NEXT_DAY     TRUNC ROUND
+SQL> 
+SQL> SET LINES 200 PAGES 24
+SQL> 
+SQL> SELECT LAST_NAME , TRANSLATE(LAST_NAME,'AEIOU','aeiou') FROM EMPLOYEES;
+
+LAST_NAME       TRANSLATE(LAST_NAME,'AEIOU','AEIOU')                                                                                                                                                    
+--------------- ------------------------------------------------------------                                                                                                                            
+King            King                                                                                                                                                                                    
+Kochhar         Kochhar                                                                                                                                                                                 
+De Haan         De Haan                                                                                                                                                                                 
+Hunold          Hunold                                                                                                                                                                                  
+Ernst           ernst                                                                                                                                                                                   
+Lorentz         Lorentz                                                                                                                                                                                 
+Mourgos         Mourgos                                                                                                                                                                                 
+Rajs            Rajs                                                                                                                                                                                    
+Davies          Davies                                                                                                                                                                                  
+Matos           Matos                                                                                                                                                                                   
+Vargas          Vargas                                                                                                                                                                                  
+Zlotkey         Zlotkey                                                                                                                                                                                 
+Abel            abel                                                                                                                                                                                    
+Taylor          Taylor                                                                                                                                                                                  
+Grant           Grant                                                                                                                                                                                   
+Whalen          Whalen                                                                                                                                                                                  
+Hartstein       Hartstein                                                                                                                                                                               
+Fay             Fay                                                                                                                                                                                     
+Higgins         Higgins                                                                                                                                                                                 
+Gietz           Gietz                                                                                                                                                                                   
+
+20 rows selected.
+
+SQL> SELECT LAST_NAME , TRANSLATE(LAST_NAME,'AaEeIiOoUu','!!@@##$$%%') FROM EMPLOYEES;
+
+LAST_NAME       TRANSLATE(LAST_NAME,'AAEEIIOOUU','!!@@##$$%%')                                                                                                                                          
+--------------- ------------------------------------------------------------                                                                                                                            
+King            K#ng                                                                                                                                                                                    
+Kochhar         K$chh!r                                                                                                                                                                                 
+De Haan         D@ H!!n                                                                                                                                                                                 
+Hunold          H%n$ld                                                                                                                                                                                  
+Ernst           @rnst                                                                                                                                                                                   
+Lorentz         L$r@ntz                                                                                                                                                                                 
+Mourgos         M$%rg$s                                                                                                                                                                                 
+Rajs            R!js                                                                                                                                                                                    
+Davies          D!v#@s                                                                                                                                                                                  
+Matos           M!t$s                                                                                                                                                                                   
+Vargas          V!rg!s                                                                                                                                                                                  
+Zlotkey         Zl$tk@y                                                                                                                                                                                 
+Abel            !b@l                                                                                                                                                                                    
+Taylor          T!yl$r                                                                                                                                                                                  
+Grant           Gr!nt                                                                                                                                                                                   
+Whalen          Wh!l@n                                                                                                                                                                                  
+Hartstein       H!rtst@#n                                                                                                                                                                               
+Fay             F!y                                                                                                                                                                                     
+Higgins         H#gg#ns                                                                                                                                                                                 
+Gietz           G#@tz                                                                                                                                                                                   
+
+20 rows selected.
+
+SQL> SELECT EMAIL , UPPER(SUBSTR(FIRST_NAME,1,1)||UPPER(SUBSTR(REPLACE(LAST_NAME,' '),1,7)) FROM EMPLOYEES;
+SELECT EMAIL , UPPER(SUBSTR(FIRST_NAME,1,1)||UPPER(SUBSTR(REPLACE(LAST_NAME,' '),1,7)) FROM EMPLOYEES
+                                                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT EMAIL , UPPER(SUBSTR(FIRST_NAME,1,1))||UPPER(SUBSTR(REPLACE(LAST_NAME,' '),1,7)) FROM EMPLOYEES;
+
+EMAIL      UPPER(SUBSTR(FIRST_NAME,1,1))||U                                                                                                                                                             
+---------- --------------------------------                                                                                                                                                             
+SKING      SKING                                                                                                                                                                                        
+NKOCHHAR   NKOCHHAR                                                                                                                                                                                     
+LDEHAAN    LDEHAAN                                                                                                                                                                                      
+AHUNOLD    AHUNOLD                                                                                                                                                                                      
+BERNST     BERNST                                                                                                                                                                                       
+DLORENTZ   DLORENTZ                                                                                                                                                                                     
+KMOURGOS   KMOURGOS                                                                                                                                                                                     
+TRAJS      TRAJS                                                                                                                                                                                        
+CDAVIES    CDAVIES                                                                                                                                                                                      
+RMATOS     RMATOS                                                                                                                                                                                       
+           PVARGAS                                                                                                                                                                                      
+EZLOTKEY   EZLOTKEY                                                                                                                                                                                     
+EABEL      EABEL                                                                                                                                                                                        
+JTAYLOR    JTAYLOR                                                                                                                                                                                      
+KGRANT     KGRANT                                                                                                                                                                                       
+JWHALEN    JWHALEN                                                                                                                                                                                      
+MHARTSTE   MHARTSTE                                                                                                                                                                                     
+PFAY       PFAY                                                                                                                                                                                         
+SHIGGINS   SHIGGINS                                                                                                                                                                                     
+WGIETZ     WGIETZ                                                                                                                                                                                       
+
+20 rows selected.
+
+SQL> REM DISPLAY ONLY THOSE FIRST_NAME WHICH HAS EVEN LENGTH. IT SHOULD DISPLAY FIRST HALF SPELLING CAPITAL AND REMAINING WITH SMALL ALPHABETS.
+SQL> 
+SQL> SELECT FIRST_NAME , UPPER(SUBSTR(FIRST_NAME,1,LENGTH(FIRST_NAME)/2))||LOWER(SUBSTR(FIRST_NAME,LENGTH(FIRST_NAME)+1))
+  2  FROM EMPLOYEES
+  3  WHERE MOD(LENGTH(FIRST_NAME),2) = 0;
+
+FIRST_NAME      UPPER(SUBSTR(FIRST_NAME,1,LENGTH(FIRST_NAME)/2))||LOWER(SUBSTR(FIRST_NAME,LENGTH(FIRST_NAME)+1))                                                                                        
+--------------- ------------------------------------------------------------------------------------------------------------------------                                                                
+Steven          STE                                                                                                                                                                                     
+Trenna          TRE                                                                                                                                                                                     
+Curtis          CUR                                                                                                                                                                                     
+Jonathon        JONA                                                                                                                                                                                    
+Kimerely        KIME                                                                                                                                                                                    
+Jennifer        JENN                                                                                                                                                                                    
+
+6 rows selected.
+
+SQL> SELECT FIRST_NAME , UPPER(SUBSTR(FIRST_NAME,1,LENGTH(FIRST_NAME)/2))||LOWER(SUBSTR(FIRST_NAME,LENGTH(FIRST_NAME)/2+1))
+  2  FROM EMPLOYEES
+  3  WHERE MOD(LENGTH(FIRST_NAME),2) = 0;
+
+FIRST_NAME      UPPER(SUBSTR(FIRST_NAME,1,LENGTH(FIRST_NAME)/2))||LOWER(SUBSTR(FIRST_NAME,LENGTH(FIRST_NAME)/2+1))                                                                                      
+--------------- ------------------------------------------------------------------------------------------------------------------------                                                                
+Steven          STEven                                                                                                                                                                                  
+Trenna          TREnna                                                                                                                                                                                  
+Curtis          CURtis                                                                                                                                                                                  
+Jonathon        JONAthon                                                                                                                                                                                
+Kimerely        KIMErely                                                                                                                                                                                
+Jennifer        JENNifer                                                                                                                                                                                
+
+6 rows selected.
+
+SQL> CL SCR
+
+SQL> REM DATE FUNCTIONS : SYSDATE CURRENT_DATE   ADD_MONTHS MONTHS_BETWEEN    LATS_DAY NEXT_DAY     TRUNC ROUND
+SQL> 
+SQL> REM DATE FUNCTIONS : SYSDATE CURRENT_DATE   ADD_MONTHS MONTHS_BETWEEN    LAST_DAY NEXT_DAY     TRUNC ROUND
+SQL> 
+SQL> REM LAST_DAY : IT RETURNS LAST DATE OF INPUT MONTH.
+SQL> 
+SQL> REM COMPANY PAYS MONTHLY SALARY ON LAST DATE OF EACH MONTH. FIND FIRST SALARY DATE.
+SQL> 
+SQL> SELECT FIRST_NAME ,HIRE_DATE , LAST_DAY(HIRE_DATE) FMSD FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE FMSD                                                                                                                                                                          
+--------------- --------- ---------                                                                                                                                                                     
+Steven          17-JUL-87 31-JUL-87                                                                                                                                                                     
+Neena           21-SEP-89 30-SEP-89                                                                                                                                                                     
+Lex             13-JAN-93 31-JAN-93                                                                                                                                                                     
+Alexander       03-JAN-90 31-JAN-90                                                                                                                                                                     
+Bruce           21-MAY-91 31-MAY-91                                                                                                                                                                     
+Diana           07-FEB-99 28-FEB-99                                                                                                                                                                     
+Kevin           16-NOV-99 30-NOV-99                                                                                                                                                                     
+Trenna          17-OCT-95 31-OCT-95                                                                                                                                                                     
+Curtis          29-JAN-97 31-JAN-97                                                                                                                                                                     
+Randall         15-MAR-98 31-MAR-98                                                                                                                                                                     
+Peter           09-JUL-98 31-JUL-98                                                                                                                                                                     
+Eleni           29-JAN-00 31-JAN-00                                                                                                                                                                     
+Ellen           11-MAY-96 31-MAY-96                                                                                                                                                                     
+Jonathon        24-MAR-98 31-MAR-98                                                                                                                                                                     
+Kimerely        24-MAY-99 31-MAY-99                                                                                                                                                                     
+Jennifer        17-SEP-87 30-SEP-87                                                                                                                                                                     
+Michael         17-FEB-96 29-FEB-96                                                                                                                                                                     
+Pat             17-AUG-97 31-AUG-97                                                                                                                                                                     
+Shelley         07-JUN-94 30-JUN-94                                                                                                                                                                     
+William         07-JUN-94 30-JUN-94                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> REM COMPANY PAYS MONTHLY SALARY ON 7tH DATE OF NEXT MONTH. FIND 3rD MONTHLY SALARY DATE.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE , LAST_DAY(HIRE_DATE)+7 FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE LAST_DAY(                                                                                                                                                                     
+--------------- --------- ---------                                                                                                                                                                     
+Steven          17-JUL-87 07-AUG-87                                                                                                                                                                     
+Neena           21-SEP-89 07-OCT-89                                                                                                                                                                     
+Lex             13-JAN-93 07-FEB-93                                                                                                                                                                     
+Alexander       03-JAN-90 07-FEB-90                                                                                                                                                                     
+Bruce           21-MAY-91 07-JUN-91                                                                                                                                                                     
+Diana           07-FEB-99 07-MAR-99                                                                                                                                                                     
+Kevin           16-NOV-99 07-DEC-99                                                                                                                                                                     
+Trenna          17-OCT-95 07-NOV-95                                                                                                                                                                     
+Curtis          29-JAN-97 07-FEB-97                                                                                                                                                                     
+Randall         15-MAR-98 07-APR-98                                                                                                                                                                     
+Peter           09-JUL-98 07-AUG-98                                                                                                                                                                     
+Eleni           29-JAN-00 07-FEB-00                                                                                                                                                                     
+Ellen           11-MAY-96 07-JUN-96                                                                                                                                                                     
+Jonathon        24-MAR-98 07-APR-98                                                                                                                                                                     
+Kimerely        24-MAY-99 07-JUN-99                                                                                                                                                                     
+Jennifer        17-SEP-87 07-OCT-87                                                                                                                                                                     
+Michael         17-FEB-96 07-MAR-96                                                                                                                                                                     
+Pat             17-AUG-97 07-SEP-97                                                                                                                                                                     
+Shelley         07-JUN-94 07-JUL-94                                                                                                                                                                     
+William         07-JUN-94 07-JUL-94                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> SELECT FIRST_NAME , HIRE_DATE , ADD_MONTHS(LAST_DAY(HIRE_DATE)+7,2) "3rd MSD" FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE 3rd MSD                                                                                                                                                                       
+--------------- --------- ---------                                                                                                                                                                     
+Steven          17-JUL-87 07-OCT-87                                                                                                                                                                     
+Neena           21-SEP-89 07-DEC-89                                                                                                                                                                     
+Lex             13-JAN-93 07-APR-93                                                                                                                                                                     
+Alexander       03-JAN-90 07-APR-90                                                                                                                                                                     
+Bruce           21-MAY-91 07-AUG-91                                                                                                                                                                     
+Diana           07-FEB-99 07-MAY-99                                                                                                                                                                     
+Kevin           16-NOV-99 07-FEB-00                                                                                                                                                                     
+Trenna          17-OCT-95 07-JAN-96                                                                                                                                                                     
+Curtis          29-JAN-97 07-APR-97                                                                                                                                                                     
+Randall         15-MAR-98 07-JUN-98                                                                                                                                                                     
+Peter           09-JUL-98 07-OCT-98                                                                                                                                                                     
+Eleni           29-JAN-00 07-APR-00                                                                                                                                                                     
+Ellen           11-MAY-96 07-AUG-96                                                                                                                                                                     
+Jonathon        24-MAR-98 07-JUN-98                                                                                                                                                                     
+Kimerely        24-MAY-99 07-AUG-99                                                                                                                                                                     
+Jennifer        17-SEP-87 07-DEC-87                                                                                                                                                                     
+Michael         17-FEB-96 07-MAY-96                                                                                                                                                                     
+Pat             17-AUG-97 07-NOV-97                                                                                                                                                                     
+Shelley         07-JUN-94 07-SEP-94                                                                                                                                                                     
+William         07-JUN-94 07-SEP-94                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                                     
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------                                                     
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90                                                     
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90                                                     
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90                                                     
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60                                                     
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60                                                     
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60                                                     
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50                                                     
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50                                                     
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50                                                     
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50                                                     
+        144 Peter           Vargas                     650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50                                                     
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80                                                     
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80                                                     
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80                                                     
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149                                                                   
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10                                                     
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20                                                     
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20                                                     
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110                                                     
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110                                                     
+
+20 rows selected.
+
+SQL> REM 1 COMPANY SENDS APPOINTMENT LETTER BEFORE 1 MONTH OF JOINING. FIND APPOINTMENT LETTER DATE FOR ALL.
+SQL> 
+SQL> REM 2 COMPANY MAKES EMPLOYEE PERMANENT AFETE 6 QUARTERS, FIND PERMANENT DATE FOR EACH EMPLOYEE.
+SQL> 
+SQL> REM 3 DISPLAY THOSE WHO WORKS FOR MORE THAN 30 YEARS IN COMAPNY.
+SQL> 
+SQL> 
+SQL> 
+SQL> REM 1 COMPANY SENDS APPOINTMENT LETTER BEFORE 1 MONTH OF JOINING. FIND APPOINTMENT LETTER DATE FOR ALL.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE , ADD_MONTHS(HIRE_DATE,-1) ALD FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE ALD                                                                                                                                                                           
+--------------- --------- ---------                                                                                                                                                                     
+Steven          17-JUL-87 17-JUN-87                                                                                                                                                                     
+Neena           21-SEP-89 21-AUG-89                                                                                                                                                                     
+Lex             13-JAN-93 13-DEC-92                                                                                                                                                                     
+Alexander       03-JAN-90 03-DEC-89                                                                                                                                                                     
+Bruce           21-MAY-91 21-APR-91                                                                                                                                                                     
+Diana           07-FEB-99 07-JAN-99                                                                                                                                                                     
+Kevin           16-NOV-99 16-OCT-99                                                                                                                                                                     
+Trenna          17-OCT-95 17-SEP-95                                                                                                                                                                     
+Curtis          29-JAN-97 29-DEC-96                                                                                                                                                                     
+Randall         15-MAR-98 15-FEB-98                                                                                                                                                                     
+Peter           09-JUL-98 09-JUN-98                                                                                                                                                                     
+Eleni           29-JAN-00 29-DEC-99                                                                                                                                                                     
+Ellen           11-MAY-96 11-APR-96                                                                                                                                                                     
+Jonathon        24-MAR-98 24-FEB-98                                                                                                                                                                     
+Kimerely        24-MAY-99 24-APR-99                                                                                                                                                                     
+Jennifer        17-SEP-87 17-AUG-87                                                                                                                                                                     
+Michael         17-FEB-96 17-JAN-96                                                                                                                                                                     
+Pat             17-AUG-97 17-JUL-97                                                                                                                                                                     
+Shelley         07-JUN-94 07-MAY-94                                                                                                                                                                     
+William         07-JUN-94 07-MAY-94                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> REM 2 COMPANY MAKES EMPLOYEE PERMANENT AFETE 6 QUARTERS, FIND PERMANENT DATE FOR EACH EMPLOYEE.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_dATE , ADD_MONTHS(HIRE_DATE,3*6) PD FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE PD                                                                                                                                                                            
+--------------- --------- ---------                                                                                                                                                                     
+Steven          17-JUL-87 17-JAN-89                                                                                                                                                                     
+Neena           21-SEP-89 21-MAR-91                                                                                                                                                                     
+Lex             13-JAN-93 13-JUL-94                                                                                                                                                                     
+Alexander       03-JAN-90 03-JUL-91                                                                                                                                                                     
+Bruce           21-MAY-91 21-NOV-92                                                                                                                                                                     
+Diana           07-FEB-99 07-AUG-00                                                                                                                                                                     
+Kevin           16-NOV-99 16-MAY-01                                                                                                                                                                     
+Trenna          17-OCT-95 17-APR-97                                                                                                                                                                     
+Curtis          29-JAN-97 29-JUL-98                                                                                                                                                                     
+Randall         15-MAR-98 15-SEP-99                                                                                                                                                                     
+Peter           09-JUL-98 09-JAN-00                                                                                                                                                                     
+Eleni           29-JAN-00 29-JUL-01                                                                                                                                                                     
+Ellen           11-MAY-96 11-NOV-97                                                                                                                                                                     
+Jonathon        24-MAR-98 24-SEP-99                                                                                                                                                                     
+Kimerely        24-MAY-99 24-NOV-00                                                                                                                                                                     
+Jennifer        17-SEP-87 17-MAR-89                                                                                                                                                                     
+Michael         17-FEB-96 17-AUG-97                                                                                                                                                                     
+Pat             17-AUG-97 17-FEB-99                                                                                                                                                                     
+Shelley         07-JUN-94 07-DEC-95                                                                                                                                                                     
+William         07-JUN-94 07-DEC-95                                                                                                                                                                     
+
+20 rows selected.
+
+SQL> REM 3 DISPLAY THOSE WHO WORKS FOR MORE THAN 30 YEARS IN COMAPNY.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE FROM EMPLOYEES
+  2  WHERE TRUNC(MONTHS_BETWEEN(SYSDATE,HIRE_DATE)/12) > 30;
+
+FIRST_NAME      HIRE_DATE                                                                                                                                                                               
+--------------- ---------                                                                                                                                                                               
+Steven          17-JUL-87                                                                                                                                                                               
+Neena           21-SEP-89                                                                                                                                                                               
+Lex             13-JAN-93                                                                                                                                                                               
+Alexander       03-JAN-90                                                                                                                                                                               
+Bruce           21-MAY-91                                                                                                                                                                               
+Jennifer        17-SEP-87                                                                                                                                                                               
+
+6 rows selected.
+
+SQL> REM NEXT_DAY :
+SQL> 
+SQL> ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RR DAY';
+
+Session altered.
+
+SQL> 
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+-------------------                                                                                                                                                                                     
+15-MAY-25 THURSDAY                                                                                                                                                                                      
+
+SQL> SELECT SYSDATE , NEXT_DAY(SYSDATE,'TUE') FROM DUAL;
+
+SYSDATE             NEXT_DAY(SYSDATE,'T                                                                                                                                                                 
+------------------- -------------------                                                                                                                                                                 
+15-MAY-25 THURSDAY  20-MAY-25 TUESDAY                                                                                                                                                                   
+
+SQL> REM COMPANY PAYS WEEKLY SALARY ON EVERY SATURDAY. FIND FIRST WEEKLY SALARY DATE.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE , NEXT_DAY(HIRE_DATE,'SATURDAY') FWSD FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE           FWSD                                                                                                                                                                
+--------------- ------------------- -------------------                                                                                                                                                 
+Steven          17-JUL-87 FRIDAY    18-JUL-87 SATURDAY                                                                                                                                                  
+Neena           21-SEP-89 THURSDAY  23-SEP-89 SATURDAY                                                                                                                                                  
+Lex             13-JAN-93 WEDNESDAY 16-JAN-93 SATURDAY                                                                                                                                                  
+Alexander       03-JAN-90 WEDNESDAY 06-JAN-90 SATURDAY                                                                                                                                                  
+Bruce           21-MAY-91 TUESDAY   25-MAY-91 SATURDAY                                                                                                                                                  
+Diana           07-FEB-99 SUNDAY    13-FEB-99 SATURDAY                                                                                                                                                  
+Kevin           16-NOV-99 TUESDAY   20-NOV-99 SATURDAY                                                                                                                                                  
+Trenna          17-OCT-95 TUESDAY   21-OCT-95 SATURDAY                                                                                                                                                  
+Curtis          29-JAN-97 WEDNESDAY 01-FEB-97 SATURDAY                                                                                                                                                  
+Randall         15-MAR-98 SUNDAY    21-MAR-98 SATURDAY                                                                                                                                                  
+Peter           09-JUL-98 THURSDAY  11-JUL-98 SATURDAY                                                                                                                                                  
+Eleni           29-JAN-00 SATURDAY  05-FEB-00 SATURDAY                                                                                                                                                  
+Ellen           11-MAY-96 SATURDAY  18-MAY-96 SATURDAY                                                                                                                                                  
+Jonathon        24-MAR-98 TUESDAY   28-MAR-98 SATURDAY                                                                                                                                                  
+Kimerely        24-MAY-99 MONDAY    29-MAY-99 SATURDAY                                                                                                                                                  
+Jennifer        17-SEP-87 THURSDAY  19-SEP-87 SATURDAY                                                                                                                                                  
+Michael         17-FEB-96 SATURDAY  24-FEB-96 SATURDAY                                                                                                                                                  
+Pat             17-AUG-97 SUNDAY    23-AUG-97 SATURDAY                                                                                                                                                  
+Shelley         07-JUN-94 TUESDAY   11-JUN-94 SATURDAY                                                                                                                                                  
+William         07-JUN-94 TUESDAY   11-JUN-94 SATURDAY                                                                                                                                                  
+
+20 rows selected.
+
+SQL> REM COMPANY PAYS WEEKLY SALARY ON EVERY TUESDAY. FIND FIFTH WEEKLY SALARY DATE.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE , NEXT_DAY(HIRE_DATE,'TUE')+(7*4) "5th WSD" FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE           5th WSD                                                                                                                                                             
+--------------- ------------------- -------------------                                                                                                                                                 
+Steven          17-JUL-87 FRIDAY    18-AUG-87 TUESDAY                                                                                                                                                   
+Neena           21-SEP-89 THURSDAY  24-OCT-89 TUESDAY                                                                                                                                                   
+Lex             13-JAN-93 WEDNESDAY 16-FEB-93 TUESDAY                                                                                                                                                   
+Alexander       03-JAN-90 WEDNESDAY 06-FEB-90 TUESDAY                                                                                                                                                   
+Bruce           21-MAY-91 TUESDAY   25-JUN-91 TUESDAY                                                                                                                                                   
+Diana           07-FEB-99 SUNDAY    09-MAR-99 TUESDAY                                                                                                                                                   
+Kevin           16-NOV-99 TUESDAY   21-DEC-99 TUESDAY                                                                                                                                                   
+Trenna          17-OCT-95 TUESDAY   21-NOV-95 TUESDAY                                                                                                                                                   
+Curtis          29-JAN-97 WEDNESDAY 04-MAR-97 TUESDAY                                                                                                                                                   
+Randall         15-MAR-98 SUNDAY    14-APR-98 TUESDAY                                                                                                                                                   
+Peter           09-JUL-98 THURSDAY  11-AUG-98 TUESDAY                                                                                                                                                   
+Eleni           29-JAN-00 SATURDAY  29-FEB-00 TUESDAY                                                                                                                                                   
+Ellen           11-MAY-96 SATURDAY  11-JUN-96 TUESDAY                                                                                                                                                   
+Jonathon        24-MAR-98 TUESDAY   28-APR-98 TUESDAY                                                                                                                                                   
+Kimerely        24-MAY-99 MONDAY    22-JUN-99 TUESDAY                                                                                                                                                   
+Jennifer        17-SEP-87 THURSDAY  20-OCT-87 TUESDAY                                                                                                                                                   
+Michael         17-FEB-96 SATURDAY  19-MAR-96 TUESDAY                                                                                                                                                   
+Pat             17-AUG-97 SUNDAY    16-SEP-97 TUESDAY                                                                                                                                                   
+Shelley         07-JUN-94 TUESDAY   12-JUL-94 TUESDAY                                                                                                                                                   
+William         07-JUN-94 TUESDAY   12-JUL-94 TUESDAY                                                                                                                                                   
+
+20 rows selected.
+
+SQL> REM COMPANY PAYS MONTHLY SALARY IN NEXT MONTH AFTER 10tH DATE ON FIRST WEDNESDAY. FIND FIRST MONTHLY SALARY DATE.
+SQL> 
+SQL> SELECT FIRST_NAME , HIRE_DATE , NEXT_DAY(LAST_DAY(HIRE_DATE)+10,'WED') FMSD FROM EMPLOYEES;
+
+FIRST_NAME      HIRE_DATE           FMSD                                                                                                                                                                
+--------------- ------------------- -------------------                                                                                                                                                 
+Steven          17-JUL-87 FRIDAY    12-AUG-87 WEDNESDAY                                                                                                                                                 
+Neena           21-SEP-89 THURSDAY  11-OCT-89 WEDNESDAY                                                                                                                                                 
+Lex             13-JAN-93 WEDNESDAY 17-FEB-93 WEDNESDAY                                                                                                                                                 
+Alexander       03-JAN-90 WEDNESDAY 14-FEB-90 WEDNESDAY                                                                                                                                                 
+Bruce           21-MAY-91 TUESDAY   12-JUN-91 WEDNESDAY                                                                                                                                                 
+Diana           07-FEB-99 SUNDAY    17-MAR-99 WEDNESDAY                                                                                                                                                 
+Kevin           16-NOV-99 TUESDAY   15-DEC-99 WEDNESDAY                                                                                                                                                 
+Trenna          17-OCT-95 TUESDAY   15-NOV-95 WEDNESDAY                                                                                                                                                 
+Curtis          29-JAN-97 WEDNESDAY 12-FEB-97 WEDNESDAY                                                                                                                                                 
+Randall         15-MAR-98 SUNDAY    15-APR-98 WEDNESDAY                                                                                                                                                 
+Peter           09-JUL-98 THURSDAY  12-AUG-98 WEDNESDAY                                                                                                                                                 
+Eleni           29-JAN-00 SATURDAY  16-FEB-00 WEDNESDAY                                                                                                                                                 
+Ellen           11-MAY-96 SATURDAY  12-JUN-96 WEDNESDAY                                                                                                                                                 
+Jonathon        24-MAR-98 TUESDAY   15-APR-98 WEDNESDAY                                                                                                                                                 
+Kimerely        24-MAY-99 MONDAY    16-JUN-99 WEDNESDAY                                                                                                                                                 
+Jennifer        17-SEP-87 THURSDAY  14-OCT-87 WEDNESDAY                                                                                                                                                 
+Michael         17-FEB-96 SATURDAY  13-MAR-96 WEDNESDAY                                                                                                                                                 
+Pat             17-AUG-97 SUNDAY    17-SEP-97 WEDNESDAY                                                                                                                                                 
+Shelley         07-JUN-94 TUESDAY   13-JUL-94 WEDNESDAY                                                                                                                                                 
+William         07-JUN-94 TUESDAY   13-JUL-94 WEDNESDAY                                                                                                                                                 
+
+20 rows selected.
+
+SQL> SPOOL OFF

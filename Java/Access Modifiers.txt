@@ -1,0 +1,24 @@
+Access Modifiers
+
+
+public - can be accessed everywhere
+
+default - package level private - same package accessed everywhere
+
+private - can be accessed within class
+
+protected - can be accessed in same package - and outside package with IS-A relationship
+
+
+
+                 SAME PACKAGE      SAME PACKAGE       SAME PACKAGE        OTHER PACKAGE       OTHER PACKAGE
+                 SAME CLASS        CHILD CLASS        OTHER CLASS         CHILD CLASS         OTHER CLASS
+--------------------------------------------------------------------------------------------------------------
+public              YES        |       YES       |        YES        |        YES        |         YES
+--------------------------------------------------------------------------------------------------------------
+default             YES        |       YES       |        YES        |        NO         |          NO
+--------------------------------------------------------------------------------------------------------------
+private             YES        |       NO        |         NO        |        NO         |          NO
+--------------------------------------------------------------------------------------------------------------
+protected           YES        |       YES       |        YES        |        YES(IS-A)  |          NO
+--------------------------------------------------------------------------------------------------------------

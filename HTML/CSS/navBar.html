@@ -1,11 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NavBar</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: lightcyan;
+    }
+    .navbar {
+      width: 100%;
+      height: 100px;
+      background-color: teal;
+      color: white;
+      text-align: center;
+    }
+    .navbar ul {
+      margin-left: 50px;
+    }
+    .navbar li {
+      float: left;
+      list-style-type: none;
+      padding: 35px;
+    }
+    .navbar li:hover {
+      background-color: orangered;
+    }
+    .navbar li a:hover {
+      display: block;
+    }
+    .navbar li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-family: cursive;
+    }
+    .button {
+      float: right;
+      padding: 35px;
+      align-items: center;
+    }
+    .button button {
+      background-color: whitesmoke;
+      color: teal;
+      font-family: cursive;
+      font-size: 15px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      width: 70px;
+      height: 30px;
+    }
+    .mainBox1 {
+      width: 100%;
+      height: 220px;
+      /* background-color: red; */
+    }
+    .mainBox2 {
+      width: 100%;
+      height: 220px;
+      margin: 20px 0px;
+      /* background-color: red; */
+    }
+    .box1 {
+      width: 180px;
+      height: 180px;
+      background-color: teal;
+      border: 2px solid grey;
+      border-radius: 8px;
+      float: left;
+      margin: 15px 20px 20px;
+      text-align: center;
+      /* line-height: 180px; */
+      color: white;
+      /* padding: 20px 0px; */
+    }
+    .box2 {
+      width: 180px;
+      height: 180px;
+      background-color: teal;
+      border: 2px solid grey;
+      border-radius: 8px;
+      float: left;
+      margin: 10px 20px 0px;
+    }
+  </style>
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Menu</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">About us</a></li>
+        <li><a href="">Contact us</a></li>
+      </ul>
+      <div class="button">
+        <button>Log In</button>
+      </div>
+    </div>
+    <div class="mainBox1">
+      <div class="box1">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio saepe,
+        ratione a iure voluptates natus?
+      </div>
+      <div class="box1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo
+        excepturi aliquid molestiae fugiat corrupti. Amet?
+      </div>
+      <div class="box1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo
+        excepturi aliquid molestiae fugiat corrupti. Amet?
+      </div>
+      <div class="box1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo
+        excepturi aliquid molestiae fugiat corrupti. Amet?
+      </div>
+      <div class="box1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo
+        excepturi aliquid molestiae fugiat corrupti. Amet?
+      </div>
+    </div>
+    <div class="mainBox2">
+      <div class="box2"></div>
+      <div class="box2"></div>
+      <div class="box2"></div>
+      <div class="box2"></div>
+      <div class="box2"></div>
+    </div>
+  </body>
 </html>

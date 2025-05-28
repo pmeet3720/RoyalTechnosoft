@@ -4,7 +4,9 @@
 int Stack1[SIZE];
 char Stack2[SIZE];
 float Stack3[SIZE];
-int top = -1;
+int intTop = -1;
+int charTop = -1;
+int floatTop = -1;
 int stackChoice;
 void pushInt();
 void popInt();
@@ -110,31 +112,31 @@ int main(){
 void pushInt(){
 
     int num;
-    if(top == SIZE-1){
+    if(intTop == SIZE-1){
         printf("\nStack is overflow");
     }else{
-        top++;
+        intTop++;
         printf("\nEnter the element to be pushed: ");
         scanf("%d", &num);
-        Stack1[top] = num;
+        Stack1[intTop] = num;
     } //end of if else
 } // end of push
 
 void popInt(){
-    if(top == -1){
+    if(intTop == -1){
         printf("\nStack is empty");
     }else{
-        printf("\nElement popped: %d", Stack1[top]);
-        top--;
+        printf("\nElement popped: %d", Stack1[intTop]);
+        intTop--;
     } // end of if else
 } // end of pop
 
 void displayInt(){
     int i;
-    if(top==-1){
+    if(intTop==-1){
         printf("\nStack is empty");
     }else{
-        for (i = top; i >= 0;i--){
+        for (i = intTop; i >= 0;i--){
             printf("\n %d: ", Stack1[i]);
         }
     } // end of if else
@@ -143,32 +145,32 @@ void displayInt(){
 void pushChar(){
 
     char charValue;
-    if(top == SIZE-1){
+    if(charTop == SIZE-1){
         printf("\nStack is overflow");
     }else{
-        top++;
-        printf("\nEnter the element to be pushed: ");
-        scanf(" %c ", &charValue);
-        Stack2[top] = charValue;
+        charTop++;
+        printf("\nEnter the character to be pushed: ");
+        scanf(" %c", &charValue);
+        Stack2[charTop] = charValue;
     } //end of if else
 } // end of push
 
 void popChar(){
-    if(top == -1){
+    if(charTop == -1){
         printf("\nStack is empty");
     }else{
-        printf("\nElement popped: %d", Stack2[top]);
-        top--;
+        printf("Character popped: %c\n", Stack2[charTop]);
+        charTop--;
     } // end of if else
 } // end of pop
 
 void displayChar(){
     int i;
-    if(top==-1){
+    if(charTop==-1){
         printf("\nStack is empty");
     }else{
-        for (i = top; i >= 0;i--){
-            printf("\n %c: ", Stack2[i]);
+        for (i = charTop; i >= 0;i--){
+            printf("%c: \n", Stack2[i]);
         }
     } // end of if else
 }// end of display
@@ -176,32 +178,32 @@ void displayChar(){
 void pushFloat(){
 
     float floatValue;
-    if(top == SIZE-1){
+    if(floatTop == SIZE-1){
         printf("\nStack is overflow");
     }else{
-        top++;
+        floatTop++;
         printf("\nEnter the element to be pushed: ");
-        scanf("%.2f", &floatValue);
-        Stack3[top] = floatValue;
+        scanf(" %.2f", &floatValue);
+        Stack3[floatTop] = floatValue;
     } //end of if else
 } // end of push
 
 void popFloat(){
-    if(top == -1){
+    if(floatTop == -1){
         printf("\nStack is empty");
     }else{
-        printf("\nElement popped: %c", Stack3[top]);
-        top--;
+        printf("Element popped: %.2f\n", Stack3[floatTop]);
+        floatTop--;
     } // end of if else
 } // end of pop
 
 void displayFloat(){
     int i;
-    if(top==-1){
+    if(floatTop==-1){
         printf("\nStack is empty");
     }else{
-        for (i = top; i >= 0;i--){
-            printf("\n %.2f: ", Stack3[i]);
+        for (i = floatTop; i >= 0;i--){
+            printf(" %.2f: \n", Stack3[i]);
         }
     } // end of if else
 }// end of display

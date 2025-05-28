@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation task</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .box{
+        width: 150px;
+        height: 150px;
+        background-color: teal;
+        
+
+        animation-name: meet;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+        animation-delay: 3s;
+
+    }
+    @keyframes meet{
+        0%{
+            transform: translate(0,0);
+            border-radius: 50%;
+            background-color: aqua;
+        }
+        25%{
+            transform: translate(400px,0);
+            background-color: blue;
+        }
+        50%{
+            transform: translate(400px,400px);
+            background-color: blueviolet;
+            /* border-radius: 50%; */
+        }
+        75%{
+            transform: translate(0,400px);
+            background-color: brown;
+            border-radius: 50%;
+        }
+        100%{
+            transform: translate(0,0);
+            /* border-radius: 50%; */
+        }
+    }
+</style>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>

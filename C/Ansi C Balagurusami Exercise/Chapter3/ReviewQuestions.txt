@@ -1,0 +1,23 @@
+3.1 true and false:
+a. true
+b. false
+c. false
+d. true
+e. true
+f. true
+g. true
+h. false
+i. true
+j. true
+k. true
+l. true
+
+3.2 Fill in the blanks
+
+a. #define 
+b. 127 (unsigned short int)
+c. extern variable
+d. typedef
+e. long int
+f. typedef and enum
+g. long int

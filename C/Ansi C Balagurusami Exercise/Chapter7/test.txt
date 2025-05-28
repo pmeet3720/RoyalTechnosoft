@@ -1,0 +1,100 @@
+CH -7 
+
+MCQ'S
+
+1. B
+2. D
+3. D
+4. A
+5. B
+
+REVIEW QUESTIONS :
+
+True and False
+ 
+1. TRUE
+2. FALSE
+3. TRUE
+4. TRUE
+5. FALSE
+6. TRUE
+7. FALSE
+8. FALSE
+9. TRUE
+10. TRUE
+
+Fill In the Blanks:
+
+1. EVENT-CONTROLLED
+2. COUNTER
+3. N+1
+4. INFINITE
+5. CONTINUE
+6. WHILE 
+7. BREAK
+
+7.6
+
+-> 
+FOR:KNOWN NUMBER OF ITERATIONS  
+WHILE:UNKNOWN NUMBER OF ITERATIONS  
+DO-WHILE:LOOP MUST EXECUTE AT LEAST ONCE 
+
+7.7
+
+-> WITH EXIT CONDITION i.e : BREAK;
+
+7.8
+
+1. INFINITE LOOP.
+2. UNDEFINED SYMBOL 'M'
+3. INFINITE LOOP
+4. INFINITE LOOP
+5. ∞
+
+7.9
+
+a. 5,4,3,2,1
+b. 4,3,2,1
+c. 555555555555555555555...∞
+d. 10,8
+
+
+7.9
+
+(A) WHILE AND DO...WHILE
+WHILE: Checks condition before loop.
+DO...WHILE: Runs loop once before checking.
+
+(B) WHILE AND FOR
+WHILE: Used when iteration count is unknown.
+FOR: Best when iteration count is known.
+
+(C) BREAK AND CONTINUE
+BREAK: Exits loop/switch immediately.
+CONTINUE: Skips to next loop iteration.
+
+(D) BREAK AND GOTO
+BREAK: Exits loop or switch.
+GOTO: Jumps to labeled code.
+
+(E) CONTINUE AND GOTO
+CONTINUE: Skips to next loop cycle.
+GOTO: Jumps anywhere in the code.
+
+7.10
+
+a. ∞
+b. 3 times
+c. 6 times
+d. ∞
+
+7.16 error
+
+
+7.1 a. NO-ERRORS
+	b. NO-ERRORS
+	c. BRACKEST ERROR
+	d. NO-ERRORS
+	e. SEMI-COLLON AFTER FOR STATEMENT WITHOUT GIVING ANY CONDITION 
+	f. NO-ERRORS
