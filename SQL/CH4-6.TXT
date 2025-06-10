@@ -1,0 +1,484 @@
+SQL> 
+SQL> REM TO_CHAR : TO CONVERT DATE TYPE VALUE INTO CHARACTER TYPE VALUE.
+SQL> 
+SQL> REM PURPOSE : TO DISPLAY DATE VALUE IN USER DEFINED/NON-DEFAULT FORMAT.
+SQL> 
+SQL> 
+SQL> REM TO_CHAR SYNTAX : TO_CHAR*('value','format')
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : D DD DDD dy Dy DY day Day DAY
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : MM rm Rm RM mon Mon MON month Month MONTH
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : Y YY YYY YYYY RR RRRR year Year YEAR
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : W WW Q J
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : SP TH FM FX
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : HH HH12 HH24 MI SS SSSSS
+SQL> 
+SQL> REM LIST OF VALID NUMBER FORMAT CHARACTERS : am Am AM a.m. A.M. pm Pm PM p.m. P.M.
+SQL> 
+SQL> 
+SQL> 
+SQL> ALTER SESSION SET NLS_SESSION_PARAMETERS = 'DD-MON-RRRR HH:MI.SS AM DAY';
+ALTER SESSION SET NLS_SESSION_PARAMETERS = 'DD-MON-RRRR HH:MI.SS AM DAY'
+*
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> 
+SQL> ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MON-RRRR HH:MI.SS AM DAY';
+
+Session altered.
+
+SQL> 
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                         
+---------------------------------                                               
+28-MAY-2025 09:15.22 AM WEDNESDAY                                               
+
+SQL> 
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'D DD DDD dy Dy DY day Day DAY') FROM DUAL;
+
+SYSDATE                                                                         
+---------------------------------                                               
+TO_CHAR(SYSDATE,'DDDDDDDYDYDYDAYDAYDAY')                                        
+--------------------------------------------------------------------------------
+28-MAY-2025 09:15.44 AM WEDNESDAY                                               
+4 28 148 wed Wed WED wednesday Wednesday WEDNESDAY                              
+                                                                                
+
+SQL> SET LINES 200 PAGES 24 SERVEROUT ON FORMAT WRA
+SQL> 
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'D DD DDD dy Dy DY day Day DAY') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'DDDDDDDYDYDYDAYDAYDAY')                                                                                                                              
+--------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------        
+28-MAY-2025 09:15.56 AM WEDNESDAY 4 28 148 wed Wed WED wednesday Wednesday WEDNESDAY                                                                                                                    
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'MM rm Rm RM mon Mon MON month Month MONTH') FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+---------------------------------                                                                                                                                                                       
+TO_CHAR(SYSDATE,'MMRMRMRMMONMONMONMONTHMONTHMONTH')                                                                                                                                                     
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                 
+28-MAY-2025 09:17.37 AM WEDNESDAY                                                                                                                                                                       
+05 v    V    V    may May MAY may       May       MAY                                                                                                                                                   
+                                                                                                                                                                                                        
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'Y YY YYY YYYY RR RRRR year Year YEAR') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'YYYYYYYYYYRRRRRRYEARYEARYEAR')                                                                                                                       
+--------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------                
+28-MAY-2025 09:18.40 AM WEDNESDAY 5 25 025 2025 25 2025 twenty twenty-five Twenty Twenty-Five TWENTY TWENTY-FIVE                                                                                        
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'YYYY yyyysp) FROM DUAL;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'YYYY yyyysp') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'YYYYYYYYSP')                                                                                                                                         
+--------------------------------- -----------------------------------------------                                                                                                                       
+28-MAY-2025 09:19.56 AM WEDNESDAY 2025 two thousand twenty-five                                                                                                                                         
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'mm mmsp') FROM DUAL;
+
+SYSDATE                           TO_CHAR(S                                                                                                                                                             
+--------------------------------- ---------                                                                                                                                                             
+28-MAY-2025 09:20.19 AM WEDNESDAY 05 five                                                                                                                                                               
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'DD DDTH DDSP DDSPTH DDTHSP') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'DDDDTHDDSPDDSPTHDDTHSP')                                                                                                                             
+--------------------------------- --------------------------------------------------                                                                                                                    
+28-MAY-2025 09:20.43 AM WEDNESDAY 28 28TH TWENTY-EIGHT TWENTY-EIGHTH TWENTY-EIGHTH                                                                                                                      
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'DAY DD-MONTH-RRRR') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'DAYDD-MONTH-RRRR')                                                                                                                                   
+--------------------------------- ---------------------------------------------------------------------------------                                                                                     
+28-MAY-2025 09:21.59 AM WEDNESDAY WEDNESDAY 28-MAY      -2025                                                                                                                                           
+
+SQL> SELECT SYSDATE-2 , TO_CHAR(SYSDATE-2 , 'DAY DD-MONTH-RRRR') FROM DUAL;
+
+SYSDATE-2                         TO_CHAR(SYSDATE-2,'DAYDD-MONTH-RRRR')                                                                                                                                 
+--------------------------------- ---------------------------------------------------------------------------------                                                                                     
+26-MAY-2025 09:22.22 AM MONDAY    MONDAY    26-MAY      -2025                                                                                                                                           
+
+SQL> SELECT SYSDATE-2 , TO_CHAR(SYSDATE-2 , 'DAY DD-MONTH-RRRR HH:MI.SS AM') FROM DUAL;
+
+SYSDATE-2                         TO_CHAR(SYSDATE-2,'DAYDD-MONTH-RRRRHH:MI.SSAM')                                                                                                                       
+--------------------------------- ---------------------------------------------------------------------------------------------                                                                         
+26-MAY-2025 09:22.37 AM MONDAY    MONDAY    26-MAY      -2025 09:22.37 AM                                                                                                                               
+
+SQL> SELECT SYSDATE-2 , TO_CHAR(SYSDATE-2 , 'FMDAY DD-MONTH-RRRR HH:MI.SS AM') FROM DUAL;
+
+SYSDATE-2                         TO_CHAR(SYSDATE-2,'FMDAYDD-MONTH-RRRRHH:MI.SSAM')                                                                                                                     
+--------------------------------- ---------------------------------------------------------------------------------------------                                                                         
+26-MAY-2025 09:22.55 AM MONDAY    MONDAY 26-MAY-2025 9:22.55 AM                                                                                                                                         
+
+SQL> SELECT SYSDATE-2 , TO_CHAR(SYSDATE-2 , 'FMDAY FMDD-MONTH-RRRR HH:MI.SS AM') FROM DUAL;
+
+SYSDATE-2                         TO_CHAR(SYSDATE-2,'FMDAYFMDD-MONTH-RRRRHH:MI.SSAM')                                                                                                                   
+--------------------------------- ---------------------------------------------------------------------------------------------                                                                         
+26-MAY-2025 09:23.17 AM MONDAY    MONDAY 26-MAY      -2025 09:23.17 AM                                                                                                                                  
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'W WW Q J') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDAT                                                                                                                                                        
+--------------------------------- --------------                                                                                                                                                        
+28-MAY-2025 09:24.07 AM WEDNESDAY 4 22 2 2460824                                                                                                                                                        
+
+SQL> REM 01-JAN-4712BC : JULIAN DATE
+SQL> 
+SQL> REM 01-JAN-4712BC : JULIAN DAY NUMBER 1
+SQL> 
+SQL> REM 02-JAN-4712BC : JULIAN DAY NUMBER 2
+SQL> 
+SQL> REM 31-JAN-4712BC : JULIAN DAY NUMBER 31
+SQL> 
+SQL> REM 01-FEB-4712BC : JULIAN DAY NUMBER 32
+SQL> 
+SQL> REM 28-MAY-2025AD : JULIAN DAY NUMBER 2460824
+SQL> 
+SQL> REM 31-DEC-9999AD : JULIAN DAY NUMBER 5373484
+SQL> 
+SQL> 
+SQL> 
+SQL> REM NUMBER INTO WORDS
+SQL> 
+SQL> SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL;
+Enter value for no: 1
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('1','J'),'JSP') FROM DUAL
+
+TO_                                                                                                                                                                                                     
+---                                                                                                                                                                                                     
+ONE                                                                                                                                                                                                     
+
+SQL> /
+Enter value for no: 12
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('12','J'),'JSP') FROM DUAL
+
+TO_CHA                                                                                                                                                                                                  
+------                                                                                                                                                                                                  
+TWELVE                                                                                                                                                                                                  
+
+SQL> /
+Enter value for no: 123
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('123','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('123','J                                                                                                                                                                                
+------------------------                                                                                                                                                                                
+ONE HUNDRED TWENTY-THREE                                                                                                                                                                                
+
+SQL> /
+Enter value for no: 1234
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('1234','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('1234','J'),'JSP')                                                                                                                                                                      
+------------------------------------                                                                                                                                                                    
+ONE THOUSAND TWO HUNDRED THIRTY-FOUR                                                                                                                                                                    
+
+SQL> /
+Enter value for no: 12345
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('12345','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('12345','J'),'JSP')                                                                                                                                                                     
+----------------------------------------                                                                                                                                                                
+TWELVE THOUSAND THREE HUNDRED FORTY-FIVE                                                                                                                                                                
+
+SQL> /
+Enter value for no: 99999
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('99999','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('99999','J'),'JSP')                                                                                                                                                                     
+---------------------------------------------                                                                                                                                                           
+NINETY-NINE THOUSAND NINE HUNDRED NINETY-NINE                                                                                                                                                           
+
+SQL> /
+Enter value for no: 100000
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('100000','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('1000                                                                                                                                                                                   
+---------------------                                                                                                                                                                                   
+ONE HUNDRED  THOUSAND                                                                                                                                                                                   
+
+SQL> /
+Enter value for no: 123456
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('123456','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('123456','J'),'JSP')                                                                                                                                                                    
+--------------------------------------------------------                                                                                                                                                
+ONE HUNDRED TWENTY-THREE THOUSAND FOUR HUNDRED FIFTY-SIX                                                                                                                                                
+
+SQL> /
+Enter value for no: 1234567
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('1234567','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('1234567','J'),'JSP')                                                                                                                                                                   
+---------------------------------------------------------------------                                                                                                                                   
+ONE MILLION TWO HUNDRED THIRTY-FOUR THOUSAND FIVE HUNDRED SIXTY-SEVEN                                                                                                                                   
+
+SQL> /
+Enter value for no: 12345678
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('12345678','J'),'JSP') FROM DUAL
+SELECT TO_CHAR(TO_DATE('12345678','J'),'JSP') FROM DUAL
+                       *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+SQL> /
+Enter value for no: 5373484
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('5373484','J'),'JSP') FROM DUAL
+
+TO_CHAR(TO_DATE('5373484','J'),'JSP')                                                                                                                                                                   
+--------------------------------------------------------------------------                                                                                                                              
+FIVE MILLION THREE HUNDRED SEVENTY-THREE THOUSAND FOUR HUNDRED EIGHTY-FOUR                                                                                                                              
+
+SQL> /
+Enter value for no: 5373485
+old   1: SELECT TO_CHAR(TO_DATE('&NO','J'),'JSP') FROM DUAL
+new   1: SELECT TO_CHAR(TO_DATE('5373485','J'),'JSP') FROM DUAL
+SELECT TO_CHAR(TO_DATE('5373485','J'),'JSP') FROM DUAL
+                       *
+ERROR at line 1:
+ORA-01854: julian date must be between 1 and 5373484 
+
+
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'HH HH12 HH24 MI SS SSSSS') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'HHH                                                                                                                                                  
+--------------------------------- --------------------                                                                                                                                                  
+28-MAY-2025 09:30.42 AM WEDNESDAY 09 09 09 30 42 34242                                                                                                                                                  
+
+SQL> /
+
+SYSDATE                           TO_CHAR(SYSDATE,'HHH                                                                                                                                                  
+--------------------------------- --------------------                                                                                                                                                  
+28-MAY-2025 09:31.15 AM WEDNESDAY 09 09 09 31 15 34275                                                                                                                                                  
+
+SQL> /
+
+SYSDATE                           TO_CHAR(SYSDATE,'HHH                                                                                                                                                  
+--------------------------------- --------------------                                                                                                                                                  
+28-MAY-2025 09:31.28 AM WEDNESDAY 09 09 09 31 28 34288                                                                                                                                                  
+
+SQL> /
+
+SYSDATE                           TO_CHAR(SYSDATE,'HHH                                                                                                                                                  
+--------------------------------- --------------------                                                                                                                                                  
+28-MAY-2025 09:31.29 AM WEDNESDAY 09 09 09 31 29 34289                                                                                                                                                  
+
+SQL> /
+
+SYSDATE                           TO_CHAR(SYSDATE,'HHH                                                                                                                                                  
+--------------------------------- --------------------                                                                                                                                                  
+28-MAY-2025 09:31.31 AM WEDNESDAY 09 09 09 31 31 34291                                                                                                                                                  
+
+SQL> REM 12 NOON : MERIDIAN TIME
+SQL> 
+SQL> REM BEFORE 12 NOON : ANTI MERIDIAN
+SQL> 
+SQL> REM AFTER 12 NOON : POST/PAST MERIDIAN
+SQL> 
+SQL> 
+SQL> SELECT SYSDATE , TO_CHAR(SYSDATE , 'am Am AM a.m. A.M. pm Pm PM p.m. P.M.') FROM DUAL;
+
+SYSDATE                           TO_CHAR(SYSDATE,'AMAMAMA.M.A.M.PMPMPM                                                                                                                                 
+--------------------------------- -------------------------------------                                                                                                                                 
+28-MAY-2025 09:32.33 AM WEDNESDAY am Am AM a.m. A.M. am Am AM a.m. A.M.                                                                                                                                 
+
+SQL> 
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"Today is "ddth "day of month" Month, "year "Yyyysp.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"TODAYIS"DDTH"DAYOFMONTH"MONTH,"YEAR"YYYYSP.')                                                                                                                                         
+-----------------------------------------------------------------------------------------------------------------                                                                                       
+Today is 28th day of month May      , year Two Thousand Twenty-Five.                                                                                                                                    
+
+SQL> SELECT TO_CHAR(SYSDATE,'FM"Today is "ddth "day of month" Month, "year "Yyyysp.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'FM"TODAYIS"DDTH"DAYOFMONTH"MONTH,"YEAR"YYYYSP.')                                                                                                                                       
+-----------------------------------------------------------------------------------------------------------------                                                                                       
+Today is 28th day of month May, year Two Thousand Twenty-Five.                                                                                                                                          
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                                                                                                                                                 
+---------------------------------                                                                                                                                                                       
+28-MAY-2025 09:37.08 AM WEDNESDAY                                                                                                                                                                       
+
+SQL> REM 1 DISPLAY LIKE THIS : 28th May
+SQL> 
+SQL> REM 2 DISPLAY LIKE THIS : Today is 208 day of year.
+SQL> 
+SQL> REM 3 DISPLAY LIKE THIS : Current time is 9:45AM
+SQL> 
+SQL> REM 4 We are in second quarter of year Twenty Twenty-Five.
+SQL> 
+SQL> REM 5 Today is Wednesday.
+SQL> 
+SQL> REM 6 45678 is current second of 26|05|2025.
+SQL> 
+SQL> REM 7 Today is julian day number 2468524.
+SQL> 
+SQL> REM 8 Currently we are in 4th week of Month May and 28th week of year.
+SQL> 
+SQL> 
+SQL> 
+SQL> REM 1 DISPLAY LIKE THIS : 28th May
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'ddth Mon') FROM DUAL;
+
+TO_CHAR(SYSDATE,'                                                                                                                                                                                       
+-----------------                                                                                                                                                                                       
+28th May                                                                                                                                                                                                
+
+SQL> REM 2 DISPLAY LIKE THIS : Today is 208 day of year.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"Today is" DDD "day of year.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"TODAYIS                                                                                                                                                                               
+-------------------------                                                                                                                                                                               
+Today is 148 day of year.                                                                                                                                                                               
+
+SQL> REM 3 DISPLAY LIKE THIS : Current time is 9:45AM
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"Current time is "FMHH:MIAM') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"CURRE                                                                                                                                                                                 
+-----------------------                                                                                                                                                                                 
+Current time is 9:54AM                                                                                                                                                                                  
+
+SQL> REM 4 We are in second quarter of year Twenty Twenty-Five.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,"We are in "qthsp "quarter of year "Yyyy.') FROM DUAL;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'"We are in "qthsp "quarter of year "Yyyy.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"WEAREIN"QTHSP"QUARTER                                                                                                                                                                 
+---------------------------------------                                                                                                                                                                 
+We are in second quarter of year 2025.                                                                                                                                                                  
+
+SQL> SELECT TO_CHAR(SYSDATE,'"We are in "qthsp "quarter of year "YyyySP.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"WEAREIN"QTHSP"QUARTEROFYEAR"YYYYSP.')                                                                                                                                                 
+-----------------------------------------------------------------------------                                                                                                                           
+We are in second quarter of year Two Thousand Twenty-Five.                                                                                                                                              
+
+SQL> REM 5 Today is Wednesday.
+SQL> 
+SQL> 
+SQL> REM 4 We are in second quarter of year Twenty Twenty-Five.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"We are in "qthsp "quarter of year "Year.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"WEAREIN"QTHSP"QUARTEROFYEAR"YEAR.')                                                                                                                                                   
+-----------------------------------------------------------------------------                                                                                                                           
+We are in second quarter of year Twenty Twenty-Five.                                                                                                                                                    
+
+SQL> REM 5 Today is Wednesday.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"Today is "Day.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"TODAYIS"DAY.')                                                                                                                                                                        
+----------------------------------------------                                                                                                                                                          
+Today is Wednesday.                                                                                                                                                                                     
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Today is "FMDay.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"TODAYIS"FMDAY.')                                                                                                                                                                      
+----------------------------------------------                                                                                                                                                          
+Today is Wednesday.                                                                                                                                                                                     
+
+SQL> REM 6 45678 is current second of 26|05|2025.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'SSSSS "is current second of "DD|MM|RRRR.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'SSSSS"ISCURRENTSECO                                                                                                                                                                    
+------------------------------------                                                                                                                                                                    
+35819 is current second of 28052025.                                                                                                                                                                    
+
+SQL> SELECT TO_CHAR(SYSDATE,'SSSSS "is current second of "DD"|"MM"|"RRRR.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'SSSSS"ISCURRENTSECOND                                                                                                                                                                  
+--------------------------------------                                                                                                                                                                  
+35839 is current second of 28|05|2025.                                                                                                                                                                  
+
+SQL> REM 7 Today is julian day number 2468524.
+SQL> 
+SQL> SELECT TO_CHAR('"Today is julian day number "J.') FROM DUAL;
+
+TO_CHAR('"TODAYISJULIANDAYNUMBE                                                                                                                                                                         
+-------------------------------                                                                                                                                                                         
+"Today is julian day number "J.                                                                                                                                                                         
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Today is julian day number "J.') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"TODAYISJULIANDAYN                                                                                                                                                                     
+-----------------------------------                                                                                                                                                                     
+Today is julian day number 2460824.                                                                                                                                                                     
+
+SQL> REM 8 Currently we are in 4th week of Month May and 28th week of year.
+SQL> 
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and wwth "week of year."') FROM DUAL;
+SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and wwth "week of year."') FROM DUAL
+                       *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and" wwth "week of year."') FROM DUAL;
+SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and" wwth "week of year."') FROM DUAL
+                       *
+ERROR at line 1:
+ORA-01801: date format is too long for internal buffer 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and") || TO_CHAR(SYSDATE,'wwth "week of year."') FROM DUAL;
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and"') || TO_CHAR(SYSDATE,'wwth "week of year."') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"CURRENTLYWEAREIN"QTH"WEEKOFMONTH"FMMONTH"AND"')||TO_CHAR(SYSDATE,'WWTH"WEEKOFY                                                                                                        
+------------------------------------------------------------------------------------------------                                                                                                        
+Currently we are in 2nd week of Month May and22nd week of year.                                                                                                                                         
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "qth "week of Month "fmMonth "and"') || TO_CHAR(SYSDATE,' wwth "week of year."') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"CURRENTLYWEAREIN"QTH"WEEKOFMONTH"FMMONTH"AND"')||TO_CHAR(SYSDATE,'WWTH"WEEKOFYE                                                                                                       
+-------------------------------------------------------------------------------------------------                                                                                                       
+Currently we are in 2nd week of Month May and 22nd week of year.                                                                                                                                        
+
+SQL> SELECT TO_CHAR(SYSDATE,'"Currently we are in "wth "week of Month "fmMonth "and"') || TO_CHAR(SYSDATE,' wwth "week of year."') FROM DUAL;
+
+TO_CHAR(SYSDATE,'"CURRENTLYWEAREIN"WTH"WEEKOFMONTH"FMMONTH"AND"')||TO_CHAR(SYSDATE,'WWTH"WEEKOFYE                                                                                                       
+-------------------------------------------------------------------------------------------------                                                                                                       
+Currently we are in 4th week of Month May and 22nd week of year.                                                                                                                                        
+
+SQL> SPOOL OFF

@@ -1,0 +1,483 @@
+
+SQL*Plus: Release 12.2.0.1.0 Production on Tue Jun 3 09:04:18 2025
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Enter user-name: SCOTT/TIGER
+Last Successful login time: Mon Jun 02 2025 09:01:35 +05:30
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> SPOOL 'D:\CH5-5.TXT'
+SQL>
+SQL> REM 1 DISPLAY HIRE YEAR WISE , TOTAL SALARY PAID. INCULDE ONLY THOSE WHO WORKS AS IT_PROG , ST_CLERK , AD_VP OR SA_REP.
+SQL>
+SQL> REM 2 DISPLAY DEPARTMENT_ID AND LOWEST SALARY PAID FOR THE DEPARTMENT. (CONSIDER ONLY THOSE WHO WERE HIRED IN EVEN QUARTERS)
+SQL>
+SQL> REM 3 DISPLAY JOB_ID WISE TOTAL SALARY FOR THE JOBS : AD_VP , SA_REP , IT_PROG. CONSIDER ONLY THOSE WHOSE FIRST_NAME SPELLING HAS AT LEAST 2 VOWELS.
+SQL>
+SQL> REM 1 DISPLAY HIRE YEAR WISE , TOTAL SALARY PAID. INCULDE ONLY THOSE WHO WORKS AS IT_PROG , ST_CLERK , AD_VP OR SA_REP.
+SQL>
+SQL> SET LINES 200 PAGES 24 SERVEROUT ON FORMAT WRA
+SQL>
+SQL> SELECT TO_CHAR(HIRE_DATE,'RRRR') , SUM(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE JOB_ID IN ('IT_PROG','ST_CLERK','SA_REP')
+  4  GRUOP BY TO_CHAR(HIRE_DATE,'RRRR');
+GRUOP BY TO_CHAR(HIRE_DATE,'RRRR')
+*
+ERROR at line 4:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT TO_CHAR(HIRE_DATE,'RRRR') , SUM(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE JOB_ID IN ('IT_PROG','ST_CLERK','SA_REP')
+  4  GROUP BY TO_CHAR(HIRE_DATE,'RRRR');
+
+TO_C SUM(SALARY)
+---- -----------
+1997        3100
+1991        6000
+1995        3500
+1990        9000
+1999       11200
+1996       11000
+1998       13700
+
+7 rows selected.
+
+SQL> REM 2 DISPLAY DEPARTMENT_ID AND LOWEST SALARY PAID FOR THE DEPARTMENT. (CONSIDER ONLY THOSE WHO WERE HIRED IN EVEN QUARTERS)
+SQL>
+SQL> SELECT DEPARTMENT_ID , MIN(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE TO_CHAR(HIRE_DATE,'Q') IN (2,4);
+SELECT DEPARTMENT_ID , MIN(SALARY)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT DEPARTMENT_ID , MIN(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE TO_CHAR(HIRE_DATE,'Q') IN (2,4)
+  4  GROUP BY DEPARTMENT_ID;
+
+DEPARTMENT_ID MIN(SALARY)
+------------- -----------
+                     7000
+          110        8300
+           50        3500
+           80       11000
+           60        6000
+
+SQL> REM 3 DISPLAY JOB_ID WISE TOTAL SALARY FOR THE JOBS : AD_VP , SA_REP , IT_PROG. CONSIDER ONLY THOSE WHOSE FIRST_NAME SPELLING HAS AT LEAST 2 VOWELS.
+SQL>
+SQL> SELECT JOB_ID , SUM(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE LENGTH(TRANSLATE(UPPER(FIRST_NAME) ,'#QWRTYPSDFGHJKLZXCVBNM')) >= 2
+  4  GROUP BY JOB_ID
+  5  HAVING JOB_ID IN ('AD_VP','SA_REP','IT_PROG');
+WHERE LENGTH(TRANSLATE(UPPER(FIRST_NAME) ,'#QWRTYPSDFGHJKLZXCVBNM')) >= 2
+             *
+ERROR at line 3:
+ORA-00909: invalid number of arguments
+
+
+SQL>
+SQL> SELECT JOB_ID , SUM(SALARY)
+  2  FROM EMPLOYEES
+  3  WHERE LENGTH(TRANSLATE(UPPER(FIRST_NAME) ,'#QWRTYPSDFGHJKLZXCVBNM','#')) >= 2
+  4  GROUP BY JOB_ID
+  5  HAVING JOB_ID IN ('AD_VP','SA_REP','IT_PROG');
+
+JOB_ID     SUM(SALARY)
+---------- -----------
+IT_PROG          19200
+AD_VP            17000
+SA_REP           26600
+
+SQL>
+SQL>
+SQL> REM NESTED SUMMARY ITEMS/NESTED GROUP FUNCTIONS :
+SQL>
+SQL> SELECT AVG(SALARY) FROM EMPLOYEES;
+
+AVG(SALARY)
+-----------
+       8775
+
+SQL> SELECT AVG(SALARY) FROM EMPLOYEES WHERE DEPARTMENT_ID = 90;
+
+AVG(SALARY)
+-----------
+ 19333.3333
+
+SQL> SELECT DEPARTMENT_ID , AVG(SALARY) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+DEPARTMENT_ID AVG(SALARY)
+------------- -----------
+                     7000
+           90  19333.3333
+           20        9500
+          110       10150
+           50        3500
+           80  10033.3333
+           60        6400
+           10        4400
+
+8 rows selected.
+
+SQL> REM DISPLAY HIGHEST AVERAGE SALARY PAID TO DEPARTMENT.
+SQL>
+SQL> REM RULES FOR USING NESTED SUMMARY ITEM/GROUP FUNCTION
+SQL>
+SQL> REM 1 'GROUP BY' CLAUSE IS MANDATORY.
+SQL>
+SQL> REM 2 WE CAN NEST SUMMARY FUNCTIONS ONLY UPTO TWO LEVELS.
+SQL>
+SQL> REM 3 WHEN WE LIST NESTED SUMMARY ITEM IN 'SELECT' LIST, ALL OTHER ITEMS OF SELECT LIST MUST BE NESTED SUMMARY ITEM ONLY. EXCEPTION : COUNT(*) , COUNT(group by columns)
+SQL>
+SQL>
+SQL>
+SQL> REM DISPLAY HIGHEST AVERAGE SALARY PAID TO DEPARTMENT.
+SQL>
+SQL> REM 1 'GROUP BY' CLAUSE IS MANDATORY.
+SQL>
+SQL> SELECT MAX(AVG(SALARY)) FROM EMPLOYEES;
+SELECT MAX(AVG(SALARY)) FROM EMPLOYEES
+           *
+ERROR at line 1:
+ORA-00978: nested group function without GROUP BY
+
+
+SQL> SELECT MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MAX(AVG(SALARY))
+----------------
+      19333.3333
+
+SQL> SELECT MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MIN(AVG(SALARY))
+----------------
+            3500
+
+SQL> SELECT MAX(AVG(SALARY)) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MAX(AVG(SALARY)) MIN(AVG(SALARY))
+---------------- ----------------
+      19333.3333             3500
+
+SQL> REM 2 WE CAN NEST SUMMARY FUNCTIONS ONLY UPTO TWO LEVELS.
+SQL>
+SQL> SELECT MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MAX(AVG(SALARY))
+----------------
+      19333.3333
+
+SQL> SELECT SUM(MAX(AVG(SALARY))) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+SELECT SUM(MAX(AVG(SALARY))) FROM EMPLOYEES GROUP BY DEPARTMENT_ID
+               *
+ERROR at line 1:
+ORA-00935: group function is nested too deeply
+
+
+SQL> REM 3 WHEN WE LIST NESTED SUMMARY ITEM IN 'SELECT' LIST, ALL OTHER ITEMS OF SELECT LIST MUST BE NESTED SUMMARY ITEM ONLY. EXCEPTION : COUNT(*) , COUNT(group by columns)
+SQL>
+SQL> SELECT MAX(AVG(SALARY)) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MAX(AVG(SALARY)) MIN(AVG(SALARY))
+---------------- ----------------
+      19333.3333             3500
+
+SQL> SELECT AVG(SALARY) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+SELECT AVG(SALARY) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID
+           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT MAX(SALARY) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+SELECT MAX(SALARY) , MIN(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID
+           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT MAX(SALARY) , AVG(SALARY) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MAX(SALARY) AVG(SALARY)
+----------- -----------
+       7000        7000
+      24000  19333.3333
+      13000        9500
+      12000       10150
+       5800        3500
+      11000  10033.3333
+       9000        6400
+       4400        4400
+
+8 rows selected.
+
+SQL> SELECT MAX(SALARY) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+SELECT MAX(SALARY) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID
+           *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT COUNT(*) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+  COUNT(*) MAX(AVG(SALARY))
+---------- ----------------
+         8       19333.3333
+
+SQL> SELECT COUNT(DEPARTMENT_ID) , COUNT(*) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+COUNT(DEPARTMENT_ID)   COUNT(*) MAX(AVG(SALARY))
+-------------------- ---------- ----------------
+                   7          8       19333.3333
+
+SQL> SELECT COUNT(JOB_ID) , COUNT(*) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+COUNT(JOB_ID)   COUNT(*) MAX(AVG(SALARY))
+------------- ---------- ----------------
+            8          8       19333.3333
+
+SQL> SELECT COUNT(MANAGER_ID) , COUNT(*) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+SELECT COUNT(MANAGER_ID) , COUNT(*) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID
+             *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT COUNT(JOB_ID) FROM EMPLOYEES;
+
+COUNT(JOB_ID)
+-------------
+           20
+
+SQL> SELECT COUNT(DISTINCT JOB_ID) FROM EMPLOYEES;
+
+COUNT(DISTINCTJOB_ID)
+---------------------
+                   12
+
+SQL> SELECT * FROM EMPLOYEES;
+
+EMPLOYEE_ID FIRST_NAME      LAST_NAME       EMAIL      PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- --------------- --------------- ---------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven          King            SKING      515.123.4567         17-JUL-87 AD_PRES         24000                                      90
+        101 Neena           Kochhar         NKOCHHAR   515.123.4568         21-SEP-89 AD_VP           17000                       100            90
+        102 Lex             De Haan         LDEHAAN    515.123.4569         13-JAN-93 AD_VP           17000                       100            90
+        103 Alexander       Hunold          AHUNOLD    590.423.4567         03-JAN-90 IT_PROG          9000                       102            60
+        104 Bruce           Ernst           BERNST     590.423.4568         21-MAY-91 IT_PROG          6000                       103            60
+        107 Diana           Lorentz         DLORENTZ   590.423.5567         07-FEB-99 IT_PROG          4200                       103            60
+        124 Kevin           Mourgos         KMOURGOS   650.123.5234         16-NOV-99 ST_MAN           5800                       100            50
+        141 Trenna          Rajs            TRAJS      650.121.8009         17-OCT-95 ST_CLERK         3500                       124            50
+        142 Curtis          Davies          CDAVIES    650.121.2994         29-JAN-97 ST_CLERK         3100                       124            50
+        143 Randall         Matos           RMATOS     650.121.2874         15-MAR-98 ST_CLERK         2600                       124            50
+        144 Peter           Vargas                     650.121.2004         09-JUL-98 ST_CLERK         2500                       124            50
+        149 Eleni           Zlotkey         EZLOTKEY   011.44.1344.429018   29-JAN-00 SA_MAN          10500             .2        100            80
+        174 Ellen           Abel            EABEL      011.44.1644.429267   11-MAY-96 SA_REP          11000             .3        149            80
+        176 Jonathon        Taylor          JTAYLOR    011.44.1644.429265   24-MAR-98 SA_REP           8600             .3        149            80
+        178 Kimerely        Grant           KGRANT     011.44.1644.429263   24-MAY-99 SA_REP           7000            .15        149
+        200 Jennifer        Whalen          JWHALEN    515.123.4444         17-SEP-87 AD_ASST          4400                       101            10
+        201 Michael         Hartstein       MHARTSTE   515.123.5555         17-FEB-96 MK_MAN          13000                       100            20
+        202 Pat             Fay             PFAY       603.123.6666         17-AUG-97 MK_REP           6000                       201            20
+        205 Shelley         Higgins         SHIGGINS   515.123.8080         07-JUN-94 AC_MGR          12000                       101           110
+        206 William         Gietz           WGIETZ     515.123.8181         07-JUN-94 AC_ACCOUNT       8300                       205           110
+
+20 rows selected.
+
+SQL> REM 1 DISPLAY LOWEST TOTAL SALARY PAID FOR JOB_ID
+SQL>
+SQL> REM 2 DISPLAY HIGHEST COUNT OF EMPLOYEES FOR MANAGER_ID
+SQL>
+SQL> REM 3 DISPLAY LOWEST AVERAGE SALARY AND HIGHEST AVERAGE SALARY PAID FOR DEPARTMENT_ID
+SQL>
+SQL> REM 4 DISPLAY LOWEST MAXIMUM SALARY AND HIGHEST MINIMUM SALARY PAID FOR HIRE YEARS
+SQL>
+SQL> REM 5 DISPLAY LOWEST COUNT AND HIGHEST COUNT FOR HIRE QUARTERS
+SQL>
+SQL>
+SQL> REM 1 DISPLAY LOWEST TOTAL SALARY PAID FOR JOB_ID
+SQL>
+SQL> SELECT MIN(SUM(SALARY)) FROM EMPLOYEES GROUP BY JOB_ID;
+
+MIN(SUM(SALARY))
+----------------
+            4400
+
+SQL> REM 2 DISPLAY HIGHEST COUNT OF EMPLOYEES FOR MANAGER_ID
+SQL>
+SQL> SELECT MAX(COUNT(*)) FROM EMPLOYEES GROUP BY MANAGER_ID;
+
+MAX(COUNT(*))
+-------------
+            5
+
+SQL> REM 3 DISPLAY LOWEST AVERAGE SALARY AND HIGHEST AVERAGE SALARY PAID FOR DEPARTMENT_ID
+SQL>
+SQL> SELECT MIN(AVG(SALARY)) , MAX(AVG(SALARY)) FROM EMPLOYEES GROUP BY DEPARTMENT_ID;
+
+MIN(AVG(SALARY)) MAX(AVG(SALARY))
+---------------- ----------------
+            3500       19333.3333
+
+SQL> REM 4 DISPLAY LOWEST MAXIMUM SALARY AND HIGHEST MINIMUM SALARY PAID FOR HIRE YEARS
+SQL>
+SQL> SELECT MIN(MAX(SALARY)) , MAX(MIN(SALARY)) FROM EMPLOYEES GROUP BY TO_CHAR(HIRE_DATE,'RRRR');
+
+MIN(MAX(SALARY)) MAX(MIN(SALARY))
+---------------- ----------------
+            3500            17000
+
+SQL> REM 5 DISPLAY LOWEST COUNT AND HIGHEST COUNT FOR HIRE QUARTERS
+SQL>
+SQL> SELECT MIN(COUNT(*)) , MAX(COUNT(*)) FROM EMPLOYEES GROUP BY TO_CHAR(HIRE_DATE,'Q');
+
+MIN(COUNT(*)) MAX(COUNT(*))
+------------- -------------
+            2             8
+
+SQL> REM PCM : PIVOT / CROSS TAB / MATRIX   REPORT :
+SQL>
+SQL> REM DISPLAY DEPARTMENT_ID AND TOTAL SALARY PAID FOR DEPARTMENTS : 20 , 60 AND 110
+SQL>
+SQL> SELECT DEPARTMENT_ID , SUM(SALARY) FROM EMPLOYEES WHERE DEPARTMENT_ID IN (20,60,110) GROUP BY DEPARTMENT_ID;
+
+DEPARTMENT_ID SUM(SALARY)
+------------- -----------
+           20       19000
+          110       20300
+           60       19200
+
+SQL> SELECT DEPARTMENT_ID , SUM(SALARY) FROM EMPLOYEES HAVING DEPARTMENT_ID IN (20,60,110) GROUP BY DEPARTMENT_ID;
+
+DEPARTMENT_ID SUM(SALARY)
+------------- -----------
+           20       19000
+          110       20300
+           60       19200
+
+SQL> /*
+SQL>
+SQL>
+SQL> DEPT_20_SUM_SAL       DEPT_60_SUM_SAL   DEPT_110_SUM-SAL
+SQL> ---------------       ---------------   ----------------
+SQL>           19000                 19200              20300
+SQL>
+SQL> */
+SQL>
+SQL>
+SQL> /*
+SQL>
+SQL> DEPARTMENT_ID   CNT_HY_93   CNT_HY_99
+SQL> --------------------------------------
+SQL>            10                       1
+SQL>            20           1
+SQL>            50           2           2
+SQL>
+SQL> */
+SQL>
+SQL> REM DISPLAY SALARY OF ONLY THOSE WHO WORK AS IT_PROG
+SQL>
+SQL> SELECT SALARY FROM EMPLOYEES WHERE JOB_ID = 'IT_PROG';
+
+    SALARY
+----------
+      9000
+      6000
+      4200
+
+SQL> SELECT JOB_ID , SALARY FROM EMPLOYEES WHERE JOB_ID = 'IT_PROG';
+
+JOB_ID         SALARY
+---------- ----------
+IT_PROG          9000
+IT_PROG          6000
+IT_PROG          4200
+
+SQL> SELECT JOB_ID , DECODE(JOB_ID , 'IT_PROG' , SALARY) FROM EMPLOYEES;
+
+JOB_ID     DECODE(JOB_ID,'IT_PROG',SALARY)
+---------- -------------------------------
+AD_PRES
+AD_VP
+AD_VP
+IT_PROG                               9000
+IT_PROG                               6000
+IT_PROG                               4200
+ST_MAN
+ST_CLERK
+ST_CLERK
+ST_CLERK
+ST_CLERK
+SA_MAN
+SA_REP
+SA_REP
+SA_REP
+AD_ASST
+MK_MAN
+MK_REP
+AC_MGR
+AC_ACCOUNT
+
+20 rows selected.
+
+SQL> SELECT JOB_ID , DECODE(JOB_ID , 'IT_PROG' , SALARY) IT_PROG_SAL , CASE JOB_ID WHEN 'SA_REP' THEN SALARY END SA_REP_SAL FROM EMPLOYEES;
+
+JOB_ID     IT_PROG_SAL SA_REP_SAL
+---------- ----------- ----------
+AD_PRES
+AD_VP
+AD_VP
+IT_PROG           9000
+IT_PROG           6000
+IT_PROG           4200
+ST_MAN
+ST_CLERK
+ST_CLERK
+ST_CLERK
+ST_CLERK
+SA_MAN
+SA_REP                      11000
+SA_REP                       8600
+SA_REP                       7000
+AD_ASST
+MK_MAN
+MK_REP
+AC_MGR
+AC_ACCOUNT
+
+20 rows selected.
+
+SQL> SELECT SUM(DECODE(DEPARTMENT_ID,20,SALARY)) DEPT_20_SUM_SAL,
+  2         SUM(DECODE(DEPARTMENT_ID,60,SALARY)) DEPT_60_SUM_SAL,
+  3         SUM(DECODE(DEPARTMENT_ID,110,SALARY)) DEPT_110_SUM_SAL
+  4  FROM EMPLOYEES;
+
+DEPT_20_SUM_SAL DEPT_60_SUM_SAL DEPT_110_SUM_SAL
+--------------- --------------- ----------------
+          19000           19200            20300
+
+SQL> /*
+SQL>
+SQL>
+SQL> DEPT_20_SUM_SAL       DEPT_60_SUM_SAL   DEPT_110_SUM-SAL
+SQL> ---------------       ---------------   ----------------
+SQL>           19000                 19200              20300
+SQL>
+SQL> */
+SQL>
+SQL> REM 1 DISPLAY DEPARTMENT_ID AND SALARY WHO WORKS IN DEPARTMENT 50
+SQL>
+SQL> REM 2 DISPLAY ALL JOB_ID AND HIRE_DATE FOR THEM WHO WORKS AS IT_PROG
+SQL>
+SQL> REM 3 DISPLAY ALL MANAGER_ID AND JOB_ID FOR THEM WHO REPORTS TO MGR 100
+SQL>
+SQL>SPOOL OFF

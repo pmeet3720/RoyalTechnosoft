@@ -1,0 +1,27 @@
+-------- Data types ---------
+
+1. Primitive      2.Non-Primitive
+   -Built-in        -User-defined
+
+   bool              
+   int
+   char
+   short
+   long int
+   float
+   double
+   
+    int: Stores integers, typically 4 bytes in size.
+    short: Stores smaller integers, usually 2 bytes.
+    long: Stores larger integers, typically 4 or 8 bytes.
+    long long: Stores very large integers, typically 8 bytes.
+    unsigned int: Stores positive integers, typically 4 bytes.
+    unsigned short: Stores positive smaller integers, usually 2 bytes.
+    unsigned long: Stores positive larger integers, typically 4 or 8 bytes.
+    unsigned long long: Stores very large positive integers, typically 8 bytes.
+
+    float: Stores single-precision floating-point numbers, typically 4 bytes.
+    double: Stores double-precision floating-point numbers, typically 8 bytes.
+    long double: Stores extended-precision floating-point numbers, typically 10 or 16 bytes.
+
+    

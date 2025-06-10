@@ -1,0 +1,8 @@
+----------C with Classes -- Advanced Structure -- to overcome limitations of structure in C -- OOp's features in C++ ----------
+------ scope of DM's in CPP --------
+1.private -- within class
+2.protected -- within class -- immediate child class can access
+3.public -- can be access everywhere
+by default if scope not given then it is considered as private.
+
+ -- Pure Encapsulation -- make DM private and MF public to maintain Data security (object k thrgh Dm ko bahar se access nahi kar sakte, app MF k thrgh DM ko access karoghe).
