@@ -1,18 +1,26 @@
 1 DISPLAY EMAIL IN SMALL LETTERS
+=> select lower(email), email from employees;
 
 2 DISPLAY FIRST_NAME IN CAPITAL LETTERS
+=> select upper(first_name) from employees;
 
 3 DISPLAY EMAIL IN CAMEL CASE
+=>  select initcap(email) from employees;
 
 4 DISPLAY SALARY LIKE THIS #*#*#24000
+=> select lpad(salary,10,'#*#*#') from employees;
 
 5 DISPLAY FIRST_NAME RIGHT ALIGNED/JUSTIFIED
+=>  select lpad(first_name,10,' ') from employees;
 
 6 DISPLAY FIRST_NAME LIKE THIS **Steven@@@ (Don't use || )
+=> select concat('**',concat(first_name,'@@@')) from employees;
 
 7 REMOVE ALL CONTINUOUS e AND n FROM FIRST_NAME FROM RIGHT
+=> select RTRIM(first_name,'ne') from employees;
 
 8 REMOVE ALL CONTINOUS 1 AND 2 FROM HIRE_DATE FROM LEFT
+=> select LTRIM(hire_date, '12') from employees;
 
 9 REMOVE ALL e FROM FIRST_NAME
 

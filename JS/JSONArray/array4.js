@@ -174,6 +174,11 @@ var company = [
 // );
 // console.log(x[0]);
 
+// let x = company
+//   .find((cmp) => cmp.employees.find((emp) => emp.name === "Emily Davis"))
+//   .employees.find((emp) => emp.name === "Emily Davis").position;
+// console.log(x);
+
 //5
 // let x = company.map((cmp) => cmp.employees.map((emp) => emp.position));
 // console.log(x);
@@ -184,6 +189,11 @@ var company = [
 //     console.log(cmp.companyname);
 //   }
 // });
+
+// let x = company.find((cmp) =>
+//   cmp.employees.find((emp) => emp.name === "Liam Wilson")
+// ).companyname;
+// console.log(x);
 
 //7
 // var sumF = 0;
@@ -210,13 +220,27 @@ var company = [
 // console.log("Sum: " + sumS);
 // console.log("Avg: " + avgS);
 
+// let x = company
+//   .find((cmp) => cmp.companyname === "Tech Solutions")
+//   .employees.reduce(
+//     (sum, emp) =>
+//       sum +
+//       emp.salary /
+//         company.find((cmp) => cmp.companyname == "Tech Solutions").employees
+//           .length,
+//     0
+//   );
+// console.log(x);
+
 //8
 // company.forEach((cmp) => {
 //   let x = cmp.employees.filter((emp) => emp.age > 30);
 //   console.log(x);
 // });
 
-// let y = company.map((cmp) => cmp.employees.filter((emp) => emp.age > 30));
+// let y = company
+//   .map((cmp) => cmp.employees.filter((emp) => emp.age > 30))
+//   .map((emp) => emp.map((emp) => emp.name));
 // console.log(y);
 
 //9
